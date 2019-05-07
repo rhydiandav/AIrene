@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './chatbot.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -34,11 +35,8 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
           onPressed: () {
-            new Text('Hello');
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => HomePage()),
-            // );
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Chatbot()));
           }),
     );
   }
