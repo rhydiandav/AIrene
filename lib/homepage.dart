@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './chatbot.dart';
+import './calendar.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -17,7 +18,15 @@ class HomePage extends StatelessWidget {
           crossAxisSpacing: 3.0,
           children: <Widget>[
             GridTile(
-              child: Icon(const IconData(59701, fontFamily: 'MaterialIcons')),
+              child: IconButton(
+                icon: Icon(const IconData(59701, fontFamily: 'MaterialIcons')),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CalendarPage()),
+                  );
+                },
+              ),
             ),
             GridTile(
               child: Icon(const IconData(58902,
