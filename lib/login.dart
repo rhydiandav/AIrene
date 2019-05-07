@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './homepage.dart';
+import './emojiselector.dart';
 
 class LogIn extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class LogIn extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => EmojiSelector()),
                 );
               },
             ),
