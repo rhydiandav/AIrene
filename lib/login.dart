@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './emojiselector.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LogIn extends StatelessWidget {
   @override
@@ -24,7 +25,13 @@ class LogIn extends StatelessWidget {
                 );
               },
             ),
-            Text('Sign Up Here'),
+            StreamBuilder<Object>(
+                stream: Firestore.instance.collection('users').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return const Text('Loading...');
+                  print(snapshot);
+                  return const Text('Hellooo...');
+                }),
           ]),
         ),
       ),
