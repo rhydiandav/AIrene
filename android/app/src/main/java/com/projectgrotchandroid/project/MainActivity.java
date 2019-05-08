@@ -1,4 +1,4 @@
-package com.example.project;
+package com.projectgrotchandroid;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "813746920671",
+    "firebase_url": "https://projectgrotch-cc242.firebaseio.com",
+    "project_id": "projectgrotch-cc242",
+    "storage_bucket": "projectgrotch-cc242.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813746920671:android:6e7b44548089b4d8",
+        "android_client_info": {
+          "package_name": "com.projectgrotchandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813746920671-rhom4tcibr87oj0c1rm5goiphtu4edo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-8i6JxIcOX4pp8GbLJd2GLnTsqwcSEhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813746920671-rhom4tcibr87oj0c1rm5goiphtu4edo3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "813746920671-5s00iq2d68gok56vtk1vqef9donco18f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.projectgrotchios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
