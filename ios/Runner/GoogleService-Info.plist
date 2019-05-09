@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>813746920671-5s00iq2d68gok56vtk1vqef9donco18f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.813746920671-5s00iq2d68gok56vtk1vqef9donco18f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB7mR0LNnuJ3UDxdwZxGBYW3SVS44K5d9U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>813746920671</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.projectgrotchios</string>
+	<key>PROJECT_ID</key>
+	<string>projectgrotch-cc242</string>
+	<key>STORAGE_BUCKET</key>
+	<string>projectgrotch-cc242.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:813746920671:ios:a2612890776f8dd6</string>
+	<key>DATABASE_URL</key>
+	<string>https://projectgrotch-cc242.firebaseio.com</string>
+</dict>
+</plist>
