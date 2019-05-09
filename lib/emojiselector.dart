@@ -4,7 +4,7 @@ import './homepage.dart';
 class EmojiSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('How are you feeling today?'),
       ),
