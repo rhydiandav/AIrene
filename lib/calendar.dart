@@ -14,7 +14,7 @@ class CalendarPage extends StatelessWidget {
 
 class CalendarViewApp extends StatelessWidget {
   void handleNewDate(date) {
-    print("handleNewDate ${date}");
+    print("handleNewDate $date");
   }
 
   @override
@@ -61,7 +61,7 @@ class CalendarViewApp extends StatelessWidget {
                 isExpandable: true,
                 dayBuilder: (BuildContext context, DateTime day) {
                   return InkWell(
-                    onTap: () => print("OnTap ${day}"),
+                    onTap: () => print("OnTap $day"),
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black38)),
