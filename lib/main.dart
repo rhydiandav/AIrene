@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
 import 'auth.dart';
 import 'root_page.dart';
 
@@ -9,9 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Project',
-      home: new RootPage(auth: new Auth()),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Project',
+        home: new RootPage(auth: new Auth()),
+        theme: ThemeData(primaryColor: Colors.pink));
   }
 }
