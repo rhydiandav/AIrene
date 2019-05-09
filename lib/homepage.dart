@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './chatbot.dart';
 import './calendar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage_backup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

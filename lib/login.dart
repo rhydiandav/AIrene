@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import './emojiselector.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 
 class LogIn extends StatefulWidget {
@@ -69,6 +66,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: new AppBar(title: new Text("Login")),
       body: Center(
         child: Container(
           child: Padding(

@@ -11,12 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Project',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Log In'),
-        ),
-        body: new RootPage(auth: new Auth()),
-      ),
+      home: new RootPage(auth: new Auth()),
     );
   }
 }
