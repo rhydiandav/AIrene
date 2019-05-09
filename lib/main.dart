@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Project',
-        home: new RootPage(auth: new Auth()),
+        home: RootPage(auth: Auth()),
         theme: ThemeData(primaryColor: Colors.pink));
   }
 }

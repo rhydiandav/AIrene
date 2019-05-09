@@ -20,18 +20,33 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Welcome"),
-          actions: <Widget>[
-            new FlatButton(
-                child: new Text("Logout",
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: _signOut)
-          ],
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Welcome"),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.all(0),
+            children: <Widget>[
+              Container(
+                height: 108,
+                child: DrawerHeader(
+                    child: Text("Your Account",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                    decoration: BoxDecoration(color: Colors.pink)),
+              ),
+              ListTile(
+                title: Text("Logout"),
+                onTap: () {
+                  _signOut();
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
         ),
         body: Container(
-          child: new GridView.count(
+          child: GridView.count(
             crossAxisCount: 3,
             childAspectRatio: 1.0,
             padding: const EdgeInsets.all(3.0),

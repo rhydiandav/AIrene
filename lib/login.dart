@@ -7,13 +7,13 @@ class LogIn extends StatefulWidget {
   final VoidCallback onSignedIn;
 
   @override
-  State<StatefulWidget> createState() => new _LogInState();
+  State<StatefulWidget> createState() => _LogInState();
 }
 
 enum FormType { login, register }
 
 class _LogInState extends State<LogIn> {
-  final formKey = new GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String _email;
   String _password;
@@ -65,15 +65,15 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text("Login")),
+    return Scaffold(
+      appBar: AppBar(title: Text("Login")),
       body: Center(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: new Form(
+            child: Form(
               key: formKey,
-              child: new Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: buildInputs() + buildSubmitButtons(),
               ),
@@ -86,15 +86,15 @@ class _LogInState extends State<LogIn> {
 
   List<Widget> buildInputs() {
     return [
-      new TextFormField(
-        decoration: new InputDecoration(
+      TextFormField(
+        decoration: InputDecoration(
           labelText: 'Email',
         ),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
         onSaved: (value) => _email = value,
       ),
-      new TextFormField(
-        decoration: new InputDecoration(
+      TextFormField(
+        decoration: InputDecoration(
           labelText: 'Password',
         ),
         obscureText: true,
@@ -107,38 +107,38 @@ class _LogInState extends State<LogIn> {
   List<Widget> buildSubmitButtons() {
     if (_formType == FormType.login) {
       return [
-        new RaisedButton(
-          child: new Text(
+        RaisedButton(
+          child: Text(
             "Login",
-            style: new TextStyle(
+            style: TextStyle(
               fontSize: 20.0,
             ),
           ),
           onPressed: validateAndSubmit,
         ),
-        new FlatButton(
+        FlatButton(
           child: Text(
             "Create an account",
-            style: new TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 20.0),
           ),
           onPressed: moveToRegister,
         )
       ];
     } else {
       return [
-        new RaisedButton(
-          child: new Text(
+        RaisedButton(
+          child: Text(
             "Create an account",
-            style: new TextStyle(
+            style: TextStyle(
               fontSize: 20.0,
             ),
           ),
           onPressed: validateAndSubmit,
         ),
-        new FlatButton(
+        FlatButton(
           child: Text(
             "Have an account? Login",
-            style: new TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 20.0),
           ),
           onPressed: moveToLogin,
         )
