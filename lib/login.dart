@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import './emojiselector.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'auth.dart';
 
 class LogIn extends StatefulWidget {
+  LogIn({this.auth, this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
+
   @override
   State<StatefulWidget> createState() => new _LogInState();
 }
@@ -30,22 +35,17 @@ class _LogInState extends State<LogIn> {
     if (validateAndSave()) {
       try {
         if (_formType == FormType.login) {
-          FirebaseUser user =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: _email,
-            password: _password,
-          );
+          String userId =
+              await widget.auth.signInWithEmailAndPassword(_email, _password);
           print(
-            'Signed in: ${user.uid}',
+            'Signed in: $userId',
           );
         } else {
-          FirebaseUser user =
-              await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: _email,
-            password: _password,
-          );
-          print("Registered user: ${user.uid}");
+          String userId = await widget.auth
+              .createUserWithEmailAndPassword(_email, _password);
+          print("Registered user: $userId");
         }
+        widget.onSignedIn();
       } catch (e) {
         print('Error: $e');
       }
