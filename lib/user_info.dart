@@ -13,6 +13,10 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   bool _filledOutDetails = false;
+  String _name;
+  String _dateofbirth;
+  String _gender;
+  List _hobbies;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,24 @@ class _UserInfoState extends State<UserInfo> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'name',
+                        ),
+                        onSaved: (value) => _name = value,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'gender',
+                        ),
+                        onSaved: (value) => _gender = value,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'date_ of birth',
+                        ),
+                        onSaved: (value) => _dateofbirth = value,
+                      ),
                       RaisedButton(
                           child: Text('Done!'),
                           onPressed: () => setState(() {
