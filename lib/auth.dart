@@ -7,12 +7,9 @@ abstract class BaseAuth {
   Future<String> createUserWithEmailAndPassword(String email, String password);
   Future<String> currentUser();
   Future<void> signOut();
-  bool filledOutDetails;
 }
 
 class Auth implements BaseAuth {
-  // Auth({this.filledOutDetails});
-  bool filledOutDetails = true;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<String> signInWithEmailAndPassword(
@@ -21,7 +18,7 @@ class Auth implements BaseAuth {
       email: email,
       password: password,
     );
-    bool filledOutDetails = false;
+
     return user.uid;
   }
 
@@ -29,8 +26,6 @@ class Auth implements BaseAuth {
       String email, String password) async {
     FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
-
-    bool filledOutDetails = false;
 
     Firestore.instance
         .collection('users')
