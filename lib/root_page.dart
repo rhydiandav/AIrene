@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'homepage.dart';
 import 'login.dart';
 import 'auth.dart';
+import 'user_info.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -46,7 +47,11 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        return HomePage(
+        // return HomePage(
+        //   auth: widget.auth,
+        //   onSignedOut: _signedOut,
+        // );
+        return UserInfo(
           auth: widget.auth,
           onSignedOut: _signedOut,
         );
