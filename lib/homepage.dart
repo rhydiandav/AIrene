@@ -2,21 +2,52 @@ import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'calendar.dart';
 import 'chatbot.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _name;
+
+  initState() {
+    super.initState();
+
+    getName().then((name) => {
+          setState(() {
+            _name = name;
+          })
+        });
+  }
+
   void _signOut() async {
     try {
       print('hello');
-      await auth.signOut();
-      onSignedOut();
+      await widget.auth.signOut();
+      widget.onSignedOut();
     } catch (e) {
       print(e);
     }
+  }
+
+  Future getName() async {
+    var currentUser = await widget.auth.currentUser();
+    var name = await Firestore.instance
+        .collection('users')
+        .document(currentUser)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return (ds.data["name"]);
+    });
+
+    return name;
   }
 
   @override
@@ -32,7 +63,7 @@ class HomePage extends StatelessWidget {
               Container(
                 height: 108,
                 child: DrawerHeader(
-                    child: Text("Your Account",
+                    child: Text(_name != null ? _name : 'Profile',
                         style: TextStyle(color: Colors.white, fontSize: 18)),
                     decoration: BoxDecoration(color: Colors.pink)),
               ),
