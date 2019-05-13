@@ -16,20 +16,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String _name;
+  String _dob;
+  String _location;
 
   initState() {
     super.initState();
 
-    getName().then((name) => {
+    getUserInfo().then((userDetails) => {
           setState(() {
-            _name = name;
+            _name = userDetails["name"];
+            _dob = userDetails["dob"];
+            _location = userDetails["location"];
           })
         });
   }
 
   void _signOut() async {
     try {
-      print('hello');
       await widget.auth.signOut();
       widget.onSignedOut();
     } catch (e) {
@@ -37,17 +40,17 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future getName() async {
+  Future getUserInfo() async {
     var currentUser = await widget.auth.currentUser();
-    var name = await Firestore.instance
+    var userDetails = await Firestore.instance
         .collection('users')
         .document(currentUser)
         .get()
         .then((DocumentSnapshot ds) {
-      return (ds.data["name"]);
+      return (ds.data);
     });
 
-    return name;
+    return userDetails;
   }
 
   @override
@@ -56,25 +59,34 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text("Welcome"),
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.all(0),
-            children: <Widget>[
-              Container(
-                height: 108,
-                child: DrawerHeader(
-                    child: Text(_name != null ? _name : 'Profile',
-                        style: TextStyle(color: Colors.white, fontSize: 18)),
-                    decoration: BoxDecoration(color: Colors.pink)),
-              ),
-              ListTile(
-                title: Text("Logout"),
-                onTap: () {
-                  _signOut();
-                  Navigator.pop(context);
-                },
-              )
-            ],
+        drawer: SizedBox(
+          width: 200,
+          child: Drawer(
+            child: ListView(
+              padding: EdgeInsets.all(0),
+              children: <Widget>[
+                Container(
+                  height: 108,
+                  child: DrawerHeader(
+                      child: Text(_name != null ? _name : 'Profile',
+                          style: TextStyle(color: Colors.white, fontSize: 18)),
+                      decoration: BoxDecoration(color: Colors.pink)),
+                ),
+                ListTile(
+                    title: Text("Birthday:"),
+                    subtitle: Text(_dob != null ? _dob : "")),
+                ListTile(
+                    title: Text("Location:"),
+                    subtitle: Text(_location != null ? _location : 'Earth')),
+                ListTile(
+                  title: Text("Logout"),
+                  onTap: () {
+                    _signOut();
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ),
           ),
         ),
         body: Container(
