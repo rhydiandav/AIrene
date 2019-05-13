@@ -15,7 +15,7 @@ class EmojiSelector extends StatefulWidget {
 }
 
 class _EmojiSelectorState extends State<EmojiSelector> {
-  var date = DateFormat.yMMMd().format(new DateTime.now());
+  var date = DateFormat('yyyy-MM-dd').format(new DateTime.now());
 
   void sendEmoji(emojiNumber, date) {
     try {
