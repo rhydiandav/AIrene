@@ -4,6 +4,7 @@ import 'login.dart';
 import 'auth.dart';
 import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'loading.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -16,9 +17,12 @@ enum AuthStatus { notSignedIn, signedIn }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
+  bool loading = true;
+  String name;
 
   initState() {
     super.initState();
+
     widget.auth.currentUser().then((userId) {
       setState(() {
         authStatus =
@@ -28,15 +32,6 @@ class _RootPageState extends State<RootPage> {
   }
 
   void _signedIn() {
-    widget.auth.currentUser().then((userId) {
-      Firestore.instance
-          .collection('users')
-          .document(userId)
-          .get()
-          .then((DocumentSnapshot ds) {
-        print(ds.data["UID"]);
-      });
-    });
     setState(() {
       authStatus = AuthStatus.signedIn;
     });
@@ -48,6 +43,19 @@ class _RootPageState extends State<RootPage> {
     });
   }
 
+  Future getName() async {
+    var currentUser = await widget.auth.currentUser();
+    var name = await Firestore.instance
+        .collection('users')
+        .document(currentUser)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return (ds.data["name"]);
+    });
+    var userDetails = {"name": name, "currentUser": currentUser};
+    return userDetails;
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (authStatus) {
@@ -57,14 +65,26 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        // return HomePage(
-        //   auth: widget.auth,
-        //   onSignedOut: _signedOut,
-        // );
-        return UserInfo(
-          auth: widget.auth,
-          onSignedOut: _signedOut,
-        );
+        return Container(
+            child: FutureBuilder(
+                future: getName(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data["name"] != null)
+                      return HomePage(
+                        auth: widget.auth,
+                        onSignedOut: _signedOut,
+                      );
+                    else {
+                      return UserInfo(
+                        auth: widget.auth,
+                        onSignedOut: _signedOut,
+                      );
+                    }
+                  } else {
+                    return Loading();
+                  }
+                }));
     }
   }
 }

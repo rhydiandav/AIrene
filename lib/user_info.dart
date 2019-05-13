@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'homepage.dart';
 
 class UserInfo extends StatefulWidget {
   UserInfo({this.auth, this.onSignedOut});
@@ -36,6 +37,8 @@ class _UserInfoState extends State<UserInfo> {
           Firestore.instance.collection('users').document(userId).updateData(
               {"name": _name, "dob": _dateofbirth, "gender": _gender});
         });
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
       } catch (e) {
         //error
         print('Error: $e');
