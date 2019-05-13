@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/emojiselector.dart';
 import 'homepage.dart';
 import 'login.dart';
 import 'auth.dart';
@@ -23,20 +24,12 @@ class _RootPageState extends State<RootPage> {
       setState(() {
         authStatus =
             userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+        userId = userId;
       });
     });
   }
 
   void _signedIn() {
-    widget.auth.currentUser().then((userId) {
-      Firestore.instance
-          .collection('users')
-          .document(userId)
-          .get()
-          .then((DocumentSnapshot ds) {
-        print(ds.data["UID"]);
-      });
-    });
     setState(() {
       authStatus = AuthStatus.signedIn;
     });
@@ -57,14 +50,28 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        // return HomePage(
-        //   auth: widget.auth,
-        //   onSignedOut: _signedOut,
-        // );
-        return UserInfo(
+        // widget.auth.currentUser().then((userId) {
+        //   Firestore.instance
+        //       .collection('users')
+        //       .document(userId)
+        //       .get()
+        //       .then((DocumentSnapshot ds) {
+        //     print(ds.data["UID"]);
+        //     if (ds.data["name"]) {
+        return EmojiSelector(
           auth: widget.auth,
           onSignedOut: _signedOut,
         );
+
+      // return HomePage(
+      //   auth: widget.auth,
+      //   onSignedOut: _signedOut,
+      // );
+      // } else {
+      //   return UserInfo;
+      // }
+      // });
     }
+    // );
   }
 }
