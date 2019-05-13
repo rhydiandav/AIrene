@@ -28,15 +28,6 @@ class _RootPageState extends State<RootPage> {
   }
 
   void _signedIn() {
-    widget.auth.currentUser().then((userId) {
-      Firestore.instance
-          .collection('users')
-          .document(userId)
-          .get()
-          .then((DocumentSnapshot ds) {
-        print(ds.data["UID"]);
-      });
-    });
     setState(() {
       authStatus = AuthStatus.signedIn;
     });
