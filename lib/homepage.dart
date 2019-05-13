@@ -53,6 +53,26 @@ class _HomePageState extends State<HomePage> {
     return userDetails;
   }
 
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Title"),
+          content: Text("content"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,10 +94,34 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ListTile(
                     title: Text("Birthday:"),
-                    subtitle: Text(_dob != null ? _dob : "")),
+                    subtitle: Text(_dob != null ? _dob : ""),
+                    trailing: Column(
+                      children: <Widget>[
+                        Container(
+                            child: IconButton(
+                          icon: Icon(const IconData(59576,
+                              fontFamily: 'MaterialIcons')),
+                          onPressed: () {
+                            _showDialog();
+                          },
+                        ))
+                      ],
+                    )),
                 ListTile(
                     title: Text("Location:"),
-                    subtitle: Text(_location != null ? _location : 'Earth')),
+                    subtitle: Text(_location != null ? _location : 'Earth'),
+                    trailing: Column(
+                      children: <Widget>[
+                        Container(
+                            child: IconButton(
+                          icon: Icon(const IconData(59576,
+                              fontFamily: 'MaterialIcons')),
+                          onPressed: () {
+                            _showDialog();
+                          },
+                        ))
+                      ],
+                    )),
                 ListTile(
                   title: Text("Logout"),
                   onTap: () {
