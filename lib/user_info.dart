@@ -15,7 +15,7 @@ class _UserInfoState extends State<UserInfo> {
   String _name;
   String _dateofbirth;
   String _gender;
-  List _hobbies;
+  // List _hobbies;
 
   final _formKey = GlobalKey<FormState>();
 

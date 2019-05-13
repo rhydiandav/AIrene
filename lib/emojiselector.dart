@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './homepage.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class EmojiSelector extends StatefulWidget {
   EmojiSelector({this.auth, this.onSignedOut});
@@ -14,19 +15,16 @@ class EmojiSelector extends StatefulWidget {
 }
 
 class _EmojiSelectorState extends State<EmojiSelector> {
-  int _emoji;
+  var date = DateFormat.yMMMd().format(new DateTime.now());
 
-  void sendEmoji(emojiNumber) {
+  void sendEmoji(emojiNumber, date) {
     try {
-      //post name dob gender hobbies to db
       widget.auth.currentUser().then((userId) {
         Firestore.instance.collection('users').document(userId).updateData({
-          "date": DateTime.now().millisecondsSinceEpoch,
-          "emoji": emojiNumber
+          date: {"emoji": emojiNumber}
         });
       });
     } catch (e) {
-      //error
       print('Error: $e');
     }
   }
@@ -49,7 +47,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(5);
+                    sendEmoji(5, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -66,7 +64,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(4);
+                    sendEmoji(4, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -83,7 +81,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(3);
+                    sendEmoji(3, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -100,7 +98,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(2);
+                    sendEmoji(2, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -117,7 +115,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(1);
+                    sendEmoji(1, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),

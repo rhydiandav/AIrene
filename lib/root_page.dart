@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/emojiselector.dart';
-import 'homepage.dart';
+// import 'homepage.dart';
 import 'login.dart';
 import 'auth.dart';
-import 'user_info.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'user_info.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
