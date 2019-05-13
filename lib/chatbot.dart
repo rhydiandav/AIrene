@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 
 class Chatbot extends StatefulWidget {
-  Chatbot({
-    Key key,
-    this.title,
-  }) : super(key: key);
+  Chatbot({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -16,6 +13,14 @@ class Chatbot extends StatefulWidget {
 class _HomePageDialogflowV2 extends State<Chatbot> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+
+  initState() {
+    super.initState();
+
+    var ID = 'User ID: LzxGNnrZotNJy1yH1oasf8GB25Q2';
+
+    response(ID);
+  }
 
   Widget _buildTextComposer() {
     return IconTheme(
@@ -59,6 +64,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
       language: Language.ENGLISH,
     );
     AIResponse response = await dialogflow.detectIntent(query);
+    print(response.queryResult.parameters);
     ChatMessage message = ChatMessage(
       text: response.getMessage() ??
           CardDialogflow(
