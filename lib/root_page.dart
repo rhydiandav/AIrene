@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/emojiselector.dart';
-// import 'homepage.dart';
+import 'homepage.dart';
 import 'login.dart';
 import 'auth.dart';
 // import 'user_info.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -17,6 +17,8 @@ enum AuthStatus { notSignedIn, signedIn }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
+  String emojiState = 'not today';
+  // today
 
   initState() {
     super.initState();
@@ -50,18 +52,37 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        // widget.auth.currentUser().then((userId) {
-        //   Firestore.instance
-        //       .collection('users')
-        //       .document(userId)
-        //       .get()
-        //       .then((DocumentSnapshot ds) {
-        //     print(ds.data["UID"]);
-        //     if (ds.data["name"]) {
-        return EmojiSelector(
-          auth: widget.auth,
-          onSignedOut: _signedOut,
-        );
+        {
+          switch (emojiState) {
+            case 'today':
+              return HomePage(
+                auth: widget.auth,
+                onSignedOut: _signedOut,
+              );
+            case 'not today':
+              return EmojiSelector(
+                auth: widget.auth,
+                onSignedOut: _signedOut,
+              );
+          }
+        }
+      // case AuthStatus.signedIn:
+      // widget.auth.currentUser().then((userId) {
+      //   Firestore.instance
+      //       .collection('users')
+      //       .document(userId)
+      //       .get()
+      //       .then((DocumentSnapshot ds) {
+      //     print(ds.data["UID"]);
+      //     if (ds.data["name"]) {
+
+      // TODO if(there is a container with todays date on the user then navigate to hompage if not navigate to emoji page)
+// if(Firestore.instance.collection('users').document(userId) == )
+
+      // return EmojiSelector(
+      //   auth: widget.auth,
+      //   onSignedOut: _signedOut,
+      // );
 
       // return HomePage(
       //   auth: widget.auth,
