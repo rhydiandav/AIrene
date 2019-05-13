@@ -57,14 +57,14 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        // return HomePage(
-        //   auth: widget.auth,
-        //   onSignedOut: _signedOut,
-        // );
-        return UserInfo(
+        return HomePage(
           auth: widget.auth,
           onSignedOut: _signedOut,
         );
+      // return UserInfo(
+      //   auth: widget.auth,
+      //   onSignedOut: _signedOut,
+      // );
     }
   }
 }
