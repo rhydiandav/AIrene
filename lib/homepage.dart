@@ -3,6 +3,8 @@ import 'auth.dart';
 import 'calendar.dart';
 import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'locationsettings.dart';
+import 'birthdaysettings.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -53,22 +55,11 @@ class _HomePageState extends State<HomePage> {
     return userDetails;
   }
 
-  void _showDialog() {
+  void _showDialog(setting) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Title"),
-          content: Text("content"),
-          actions: <Widget>[
-            FlatButton(
-              child: Text("close"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
+        return setting == 'Location' ? LocationSettings() : BirthdaySettings();
       },
     );
   }
@@ -102,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                           icon: Icon(const IconData(59576,
                               fontFamily: 'MaterialIcons')),
                           onPressed: () {
-                            _showDialog();
+                            _showDialog('Birthday');
                           },
                         ))
                       ],
@@ -117,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                           icon: Icon(const IconData(59576,
                               fontFamily: 'MaterialIcons')),
                           onPressed: () {
-                            _showDialog();
+                            _showDialog('Location');
                           },
                         ))
                       ],
