@@ -22,6 +22,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
 
   initState() {
     getCurrentUser().then((userId) {
+      print('initing state');
       response('User ID' + userId);
     });
     super.initState();
