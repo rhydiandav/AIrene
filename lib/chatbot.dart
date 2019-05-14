@@ -22,7 +22,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
 
   initState() {
     getCurrentUser().then((userId) {
-      response(userId);
+      response('User ID' + userId);
     });
     super.initState();
   }
@@ -69,7 +69,6 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
       language: Language.ENGLISH,
     );
     AIResponse response = await dialogflow.detectIntent(query);
-    print(response.queryResult.parameters);
     ChatMessage message = ChatMessage(
       text: response.getMessage() ??
           CardDialogflow(
