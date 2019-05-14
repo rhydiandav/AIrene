@@ -64,9 +64,10 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
       fileJson: "assets/chatbot.json",
     ).build();
 
+    var english = Language.english;
     Dialogflow dialogflow = Dialogflow(
       authGoogle: authGoogle,
-      language: Language.ENGLISH,
+      language: english,
     );
     AIResponse response = await dialogflow.detectIntent(query);
     ChatMessage message = ChatMessage(
