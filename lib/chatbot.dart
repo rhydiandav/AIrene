@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Chatbot extends StatefulWidget {
-  Chatbot({
-    Key key,
-    this.title,
-  }) : super(key: key);
+  Chatbot({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -16,6 +14,18 @@ class Chatbot extends StatefulWidget {
 class _HomePageDialogflowV2 extends State<Chatbot> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+
+  Future<String> getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
+  }
+
+  initState() {
+    getCurrentUser().then((userId) {
+      response('User ID' + userId);
+    });
+    super.initState();
+  }
 
   Widget _buildTextComposer() {
     return IconTheme(
