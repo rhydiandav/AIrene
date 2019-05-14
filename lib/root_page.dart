@@ -5,6 +5,7 @@ import 'login.dart';
 import 'auth.dart';
 // import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -17,19 +18,66 @@ enum AuthStatus { notSignedIn, signedIn }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
-  String emojiState = 'not today';
+  String emojiState = '';
   // today
 
   initState() {
     super.initState();
     widget.auth.currentUser().then((userId) {
+
+      _didEmoji();
+
       setState(() {
         authStatus =
             userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
         userId = userId;
       });
     });
+
+    // setState(() {
+    //   emojiState = 'today';
+
+    // });
   }
+
+
+  Future<void> _didEmoji() async {
+    print(widget.auth);
+    widget.auth.currentUser().then((userId) => {
+      print(userId),
+      Firestore.instance
+          .collection('users')
+          .document(userId)
+          .get()
+          .then((DocumentSnapshot ds) {
+
+        if(ds.data["${DateFormat('yyyy-MM-dd').format(new DateTime.now())}"] == null){
+
+print('no emoji today');
+setState(() {
+            emojiState = 'not today';
+          }); }else {
+          print('you have entered an emoji today');
+          setState(() {
+            emojiState = 'today';
+          });
+        }
+
+      }),
+    });
+  }
+
+
+  // initState() {
+  //   super.initState();
+  //   widget.auth.currentUser().then((userId) {
+  //     setState(() {
+  //       authStatus =
+  //           userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+  //       userId = userId;
+  //     });
+  //   });
+  // }
 
   void _signedIn() {
     setState(() {
@@ -58,11 +106,13 @@ class _RootPageState extends State<RootPage> {
               return HomePage(
                 auth: widget.auth,
                 onSignedOut: _signedOut,
+
               );
             case 'not today':
               return EmojiSelector(
                 auth: widget.auth,
                 onSignedOut: _signedOut,
+
               );
           }
         }
