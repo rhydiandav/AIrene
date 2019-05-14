@@ -3,6 +3,7 @@ import "./homepage.dart";
 import "auth.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:intl/intl.dart";
+import 'package:firebase_auth/firebase_auth.dart';
 
 class EmojiSelector extends StatefulWidget {
   EmojiSelector({this.auth, this.onSignedOut});
@@ -15,6 +16,11 @@ class EmojiSelector extends StatefulWidget {
 }
 
 class _EmojiSelectorState extends State<EmojiSelector> {
+  // Future<String> getCurrentUser() async {
+  //   FirebaseUser user = await FirebaseAuth.instance.currentUser();
+  //   return user.uid;
+  // }
+
   var date = DateFormat("yyyy-MM-dd").format(new DateTime.now());
 
   void sendEmoji(emojiNumber, date) {
@@ -40,18 +46,16 @@ class _EmojiSelectorState extends State<EmojiSelector> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 GestureDetector(
                   child: Text(
-                    ":smiley:",
+                    "😀",
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
                     sendEmoji(5, date);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
+                    Navigator.of(context).pop();
                   },
                 )
               ],
@@ -60,7 +64,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
               children: <Widget>[
                 GestureDetector(
                   child: Text(
-                    ":slightly_smiling_face:",
+                    "🙂",
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
@@ -77,7 +81,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
               children: <Widget>[
                 GestureDetector(
                   child: Text(
-                    ":neutral_face:",
+                    "😐",
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
@@ -94,7 +98,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
               children: <Widget>[
                 GestureDetector(
                   child: Text(
-                    ":slightly_frowning_face:",
+                    "🙁",
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
@@ -111,7 +115,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
               children: <Widget>[
                 GestureDetector(
                   child: Text(
-                    ":white_frowning_face:",
+                    "😢",
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {

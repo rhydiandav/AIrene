@@ -22,7 +22,7 @@ class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
   bool loading = true;
   String emojiState = 'hello';
-  String _name;
+  String emoji;
 
   initState() {
     super.initState();
@@ -32,19 +32,25 @@ class _RootPageState extends State<RootPage> {
           //   return emoji}
           //   else { emoji = 'today';
           //   return emoji}
+          emoji = userDetails[
+                      '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}'] !=
+                  null
+              ? 'today'
+              : 'not today',
 
           setState(() {
             authStatus = userDetails['UID'] == null
                 ? AuthStatus.notSignedIn
                 : AuthStatus.signedIn;
-            _name = userDetails['name'];
-            if (userDetails[
-                    '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}'] !=
-                null) {
-              emojiState = 'today';
-            } else {
-              emojiState = 'not today';
-            }
+
+            // if (userDetails[
+            //         '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}'] !=
+            //     null) {
+            //   emojiState = 'today';
+            // } else {
+            //   emojiState = 'not today';
+            // }
+            emojiState = emoji;
 
             print(emojiState);
             //     ? 'not today'
@@ -108,7 +114,7 @@ class _RootPageState extends State<RootPage> {
         .then((DocumentSnapshot ds) {
       return (ds.data);
     });
-
+    print(userDetails);
     return userDetails;
   }
 
@@ -125,26 +131,33 @@ class _RootPageState extends State<RootPage> {
             child: FutureBuilder(
                 future: getDetails(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('snapshot');
                   if (snapshot.hasData) {
-                    if (snapshot.data["name"] != null) if (emojiState ==
-                        'today') {
+                    print('has data');
+                    if (snapshot.data["name"] != null) {
+                      print('snapshot has data');
+                      // if (emojiState == 'today') {
+                      //   print('emoji is today');
                       return HomePage(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );
+                      // } else if (emojiState == 'not today') {
+                      //   print('emoji here');
+                      //   return EmojiSelector(
+                      //     auth: widget.auth,
+                      //     onSignedOut: _signedOut,
+                      //   );
+                      // }
                     } else {
-                      return EmojiSelector(
-                        auth: widget.auth,
-                        onSignedOut: _signedOut,
-                      );
-                    }
-                    else {
                       return UserDetails(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );
+                      // }
                     }
                   } else {
+                    print('load');
                     return Loading();
                   }
                 }));

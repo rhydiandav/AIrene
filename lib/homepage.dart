@@ -6,6 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
 
+import 'package:intl/intl.dart';
+import 'dart:async';
+
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
 
@@ -20,11 +23,16 @@ class _HomePageState extends State<HomePage> {
   String _name;
   String _dob;
   String _location;
+  String emojiPresent;
+  String emojiState = 'hello';
+  String emoji;
 
+  var now = DateFormat("yyyy-MM-dd").format(new DateTime.now());
   initState() {
     super.initState();
 
     setDetailsState();
+    emojiData();
   }
 
   setDetailsState() {
@@ -33,8 +41,165 @@ class _HomePageState extends State<HomePage> {
             _name = userDetails["name"];
             _dob = userDetails["dob"];
             _location = userDetails["location"];
+            emojiPresent = userDetails[
+                    '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}']
+                .toString();
           })
         });
+  }
+
+  emojiData() {
+    if (emojiPresent == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => new AlertDialog(
+                title: new Text("How are you feeling today?"),
+                content: Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          GestureDetector(
+                              child: Text(
+                                '😀',
+                                style: TextStyle(fontSize: 30.0),
+                              ),
+                              onTap: () {
+                                try {
+                                  widget.auth.currentUser().then((userId) {
+                                    Firestore.instance
+                                        .collection("users")
+                                        .document(userId)
+                                        .updateData({
+                                      now: {'emoji': 5}
+                                    });
+                                  });
+                                } catch (e) {
+                                  print("Error: $e");
+                                }
+                                Navigator.of(context).pop();
+                              })
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          GestureDetector(
+                              child:
+                                  Text('🙂', style: TextStyle(fontSize: 30.0)),
+                              onTap: () {
+                                try {
+                                  widget.auth.currentUser().then((userId) {
+                                    Firestore.instance
+                                        .collection("users")
+                                        .document(userId)
+                                        .updateData({
+                                      now: {'emoji': 4}
+                                    });
+                                  });
+                                } catch (e) {
+                                  print("Error: $e");
+                                }
+                                Navigator.of(context).pop();
+                              })
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          GestureDetector(
+                              child:
+                                  Text('😐', style: TextStyle(fontSize: 30.0)),
+                              onTap: () {
+                                try {
+                                  widget.auth.currentUser().then((userId) {
+                                    Firestore.instance
+                                        .collection("users")
+                                        .document(userId)
+                                        .updateData({
+                                      now: {'emoji': 3}
+                                    });
+                                  });
+                                } catch (e) {
+                                  print("Error: $e");
+                                }
+                                Navigator.of(context).pop();
+                              })
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          GestureDetector(
+                              child:
+                                  Text('🙁', style: TextStyle(fontSize: 30.0)),
+                              onTap: () {
+                                try {
+                                  widget.auth.currentUser().then((userId) {
+                                    Firestore.instance
+                                        .collection("users")
+                                        .document(userId)
+                                        .updateData({
+                                      now: {'emoji': 2}
+                                    });
+                                  });
+                                } catch (e) {
+                                  print("Error: $e");
+                                }
+                                Navigator.of(context).pop();
+                              })
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          GestureDetector(
+                              child:
+                                  Text('😢', style: TextStyle(fontSize: 30.0)),
+                              onTap: () {
+                                try {
+                                  widget.auth.currentUser().then((userId) {
+                                    Firestore.instance
+                                        .collection("users")
+                                        .document(userId)
+                                        .updateData({
+                                      now: {'emoji': 1}
+                                    });
+                                  });
+                                } catch (e) {
+                                  print("Error: $e");
+                                }
+                                Navigator.of(context).pop();
+                              })
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text("OK"),
+                    onPressed: () {
+                      print('here...');
+                      try {
+                        widget.auth.currentUser().then((userId) {
+                          Firestore.instance
+                              .collection("users")
+                              .document(userId)
+                              .updateData({
+                            now: {'emoji': 5}
+                          });
+                        });
+                      } catch (e) {
+                        print("Error: $e");
+                      }
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+        );
+      });
+    }
   }
 
   void _signOut() async {
