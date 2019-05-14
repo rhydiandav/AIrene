@@ -6,6 +6,8 @@ import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
+import 'emojiselector.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -19,17 +21,66 @@ enum AuthStatus { notSignedIn, signedIn }
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
   bool loading = true;
+  String emojiState = 'hello';
+  String _name;
 
   initState() {
     super.initState();
+    getDetails().then((userDetails) => {
+          // if(userDetails[('${DateFormat("yyyy-MM-dd").format(new DateTime.now())}')] == null ) {
+          //   emoji = 'not today';
+          //   return emoji}
+          //   else { emoji = 'today';
+          //   return emoji}
 
-    widget.auth.currentUser().then((userId) {
-      setState(() {
-        authStatus =
-            userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
-      });
-    });
+          setState(() {
+            authStatus = userDetails['UID'] == null
+                ? AuthStatus.notSignedIn
+                : AuthStatus.signedIn;
+            _name = userDetails['name'];
+            if (userDetails[
+                    '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}'] !=
+                null) {
+              emojiState = 'today';
+            } else {
+              emojiState = 'not today';
+            }
+
+            print(emojiState);
+            //     ? 'not today'
+            //     :
+            // 'today';
+          })
+        });
+    // widget.auth.currentUser().then((userId) {
+    // _didEmoji();
   }
+
+  // Future<void> _didEmoji() async {
+  //   print(widget.auth);
+  //   widget.auth.currentUser().then((userId) => {
+  //         print(userId),
+  //         Firestore.instance
+  //             .collection("users")
+  //             .document(userId)
+  //             .get()
+  //             .then((DocumentSnapshot ds) {
+  //           if (ds.data[
+  //                   '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}'] ==
+  //               null) {
+  //             print("no emoji today");
+  //             setState(() {
+  //               emojiState = "not today";
+  //             });
+  //           } else {
+  //             print("you have entered an emoji today");
+  //             setState(() {
+  //               emojiState = "today";
+  //             });
+  //           }
+  //         }),
+  //       });
+  // }
 
   void _signedIn() {
     setState(() {
@@ -48,16 +99,16 @@ class _RootPageState extends State<RootPage> {
     return user.uid;
   }
 
-  Future getName() async {
+  Future getDetails() async {
     var currentUser = await getCurrentUser();
-    var name = await Firestore.instance
+    var userDetails = await Firestore.instance
         .collection('users')
         .document(currentUser)
         .get()
         .then((DocumentSnapshot ds) {
-      return (ds.data["name"]);
+      return (ds.data);
     });
-    var userDetails = {"name": name, "currentUser": currentUser};
+
     return userDetails;
   }
 
@@ -72,14 +123,21 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.signedIn:
         return Container(
             child: FutureBuilder(
-                future: getName(),
+                future: getDetails(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    if (snapshot.data["name"] != null)
+                    if (snapshot.data["name"] != null) if (emojiState ==
+                        'today') {
                       return HomePage(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );
+                    } else {
+                      return EmojiSelector(
+                        auth: widget.auth,
+                        onSignedOut: _signedOut,
+                      );
+                    }
                     else {
                       return UserDetails(
                         auth: widget.auth,
