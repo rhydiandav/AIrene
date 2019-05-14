@@ -5,6 +5,7 @@ import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
+import 'chartpage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -161,8 +162,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               GridTile(
-                child: Icon(const IconData(58902,
-                    fontFamily: 'MaterialIcons', matchTextDirection: true)),
+                child: IconButton(
+                  icon:
+                      Icon(const IconData(59105, fontFamily: 'MaterialIcons')),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MoodOverTime()),
+                    );
+                  },
+                ),
               ),
               GridTile(
                 child: Icon(const IconData(57936, fontFamily: 'MaterialIcons')),
