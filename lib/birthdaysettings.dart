@@ -5,6 +5,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class BirthdaySettings extends StatefulWidget {
+  BirthdaySettings({this.setDetails});
+  final VoidCallback setDetails;
   @override
   _BirthdaySettingsState createState() => _BirthdaySettingsState();
 }
@@ -37,6 +39,7 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
               .document(userId)
               .updateData({"dob": _dateofbirth});
         });
+        widget.setDetails();
         Navigator.of(context).pop();
       } catch (e) {
         //error

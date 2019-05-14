@@ -24,6 +24,10 @@ class _HomePageState extends State<HomePage> {
   initState() {
     super.initState();
 
+    setDetailsState();
+  }
+
+  setDetailsState() {
     getUserDetails().then((userDetails) => {
           setState(() {
             _name = userDetails["name"];
@@ -59,7 +63,9 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return setting == 'Location' ? LocationSettings() : BirthdaySettings();
+        return setting == 'Location'
+            ? LocationSettings(setDetails: setDetailsState)
+            : BirthdaySettings(setDetails: setDetailsState);
       },
     );
   }

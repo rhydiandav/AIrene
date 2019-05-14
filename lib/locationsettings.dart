@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LocationSettings extends StatefulWidget {
+  LocationSettings({this.setDetails});
+  final VoidCallback setDetails;
   @override
   _LocationSettingsState createState() => _LocationSettingsState();
 }
@@ -30,12 +32,12 @@ class _LocationSettingsState extends State<LocationSettings> {
     if (validateAndSave()) {
       try {
         getCurrentUser().then((userId) {
-          print('got userid');
           Firestore.instance
               .collection('users')
               .document(userId)
               .updateData({"location": _location});
         });
+        widget.setDetails();
         Navigator.of(context).pop();
       } catch (e) {
         //error
