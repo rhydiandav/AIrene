@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'homepage.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-class UserInfo extends StatefulWidget {
-  UserInfo({this.auth, this.onSignedOut});
+class UserDetails extends StatefulWidget {
+  UserDetails({this.auth, this.onSignedOut});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
   @override
-  _UserInfoState createState() => _UserInfoState();
+  _UserDetailsState createState() => _UserDetailsState();
 }
 
-class _UserInfoState extends State<UserInfo> {
+class _UserDetailsState extends State<UserDetails> {
   String _name;
   String _dateofbirth;
-  String _gender;
-  List _hobbies;
+  String _location;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -35,7 +36,7 @@ class _UserInfoState extends State<UserInfo> {
         //post name dob gender hobbies to db
         widget.auth.currentUser().then((userId) {
           Firestore.instance.collection('users').document(userId).updateData(
-              {"name": _name, "dob": _dateofbirth, "gender": _gender});
+              {"name": _name, "dob": _dateofbirth, "location": _location});
         });
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage()));
@@ -70,16 +71,19 @@ class _UserInfoState extends State<UserInfo> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'gender',
+                      labelText: 'location',
                     ),
-                    onSaved: (value) => _gender = value,
+                    onSaved: (value) => _location = value,
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'date_ of birth',
-                    ),
-                    onSaved: (value) => _dateofbirth = value,
-                  ),
+                  DateTimePickerFormField(
+                      inputType: InputType.date,
+                      format: DateFormat('yyyy-MM-dd'),
+                      editable: true,
+                      decoration: InputDecoration(
+                          labelText: 'Date of Birth',
+                          hasFloatingPlaceholder: false),
+                      onSaved: (dt) =>
+                          _dateofbirth = dt.toIso8601String().substring(0, 10)),
                   RaisedButton(
                       child: Text('Done!'),
                       onPressed: () => {

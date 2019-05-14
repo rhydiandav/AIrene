@@ -44,7 +44,7 @@ class _LogInState extends State<LogIn> {
         }
         widget.onSignedIn();
       } catch (e) {
-        print('Error: $e');
+        print('Login Error: $e');
       }
     }
   }
