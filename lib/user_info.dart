@@ -5,16 +5,16 @@ import 'homepage.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-class UserInfo extends StatefulWidget {
-  UserInfo({this.auth, this.onSignedOut});
+class UserDetails extends StatefulWidget {
+  UserDetails({this.auth, this.onSignedOut});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
   @override
-  _UserInfoState createState() => _UserInfoState();
+  _UserDetailsState createState() => _UserDetailsState();
 }
 
-class _UserInfoState extends State<UserInfo> {
+class _UserDetailsState extends State<UserDetails> {
   String _name;
   String _dateofbirth;
   String _location;

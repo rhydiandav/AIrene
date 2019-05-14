@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class BirthdaySettings extends StatefulWidget {
-  BirthdaySettings({this.auth});
-  final BaseAuth auth;
   @override
   _BirthdaySettingsState createState() => _BirthdaySettingsState();
 }
 
 class _BirthdaySettingsState extends State<BirthdaySettings> {
-  String _location;
+  String _dateofbirth;
 
   final _formKey = GlobalKey<FormState>();
+
+  Future<String> getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
+  }
 
   bool validateAndSave() {
     final form = _formKey.currentState;
@@ -28,15 +31,16 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
   void validateAndSubmit() {
     if (validateAndSave()) {
       try {
-        widget.auth.currentUser().then((userId) {
+        getCurrentUser().then((userId) {
           Firestore.instance
               .collection('users')
               .document(userId)
-              .updateData({"location": _location});
+              .updateData({"dob": _dateofbirth});
         });
+        Navigator.of(context).pop();
       } catch (e) {
         //error
-        print('Error: $e');
+        print('Change Birthday Error: $e');
       }
     }
   }
@@ -50,12 +54,14 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'location',
-              ),
-              onSaved: (value) => _location = value,
-            ),
+            DateTimePickerFormField(
+                inputType: InputType.date,
+                format: DateFormat('yyyy-MM-dd'),
+                editable: true,
+                decoration: InputDecoration(
+                    labelText: 'Date of Birth', hasFloatingPlaceholder: false),
+                onSaved: (dt) =>
+                    _dateofbirth = dt.toIso8601String().substring(0, 10)),
             RaisedButton(
                 child: Text('Done!'),
                 onPressed: () => {
@@ -66,7 +72,7 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text("close"),
+          child: Text("Cancel"),
           onPressed: () {
             Navigator.of(context).pop();
           },

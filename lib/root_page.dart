@@ -5,6 +5,7 @@ import 'auth.dart';
 import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'loading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -18,7 +19,6 @@ enum AuthStatus { notSignedIn, signedIn }
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
   bool loading = true;
-  String name;
 
   initState() {
     super.initState();
@@ -43,8 +43,13 @@ class _RootPageState extends State<RootPage> {
     });
   }
 
+  Future<String> getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
+  }
+
   Future getName() async {
-    var currentUser = await widget.auth.currentUser();
+    var currentUser = await getCurrentUser();
     var name = await Firestore.instance
         .collection('users')
         .document(currentUser)
@@ -76,7 +81,7 @@ class _RootPageState extends State<RootPage> {
                         onSignedOut: _signedOut,
                       );
                     else {
-                      return UserInfo(
+                      return UserDetails(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );

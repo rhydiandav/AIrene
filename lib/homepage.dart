@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   initState() {
     super.initState();
 
-    getUserInfo().then((userDetails) => {
+    getUserDetails().then((userDetails) => {
           setState(() {
             _name = userDetails["name"];
             _dob = userDetails["dob"];
@@ -38,11 +38,11 @@ class _HomePageState extends State<HomePage> {
       await widget.auth.signOut();
       widget.onSignedOut();
     } catch (e) {
-      print(e);
+      print('sign out error: $e');
     }
   }
 
-  Future getUserInfo() async {
+  Future getUserDetails() async {
     var currentUser = await widget.auth.currentUser();
     var userDetails = await Firestore.instance
         .collection('users')

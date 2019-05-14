@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LocationSettings extends StatefulWidget {
-  LocationSettings({this.auth});
-  final BaseAuth auth;
   @override
   _LocationSettingsState createState() => _LocationSettingsState();
 }
@@ -24,19 +21,25 @@ class _LocationSettingsState extends State<LocationSettings> {
     return false;
   }
 
+  Future<String> getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
+  }
+
   void validateAndSubmit() {
     if (validateAndSave()) {
       try {
-        widget.auth.currentUser().then((userId) {
-          print(userId);
+        getCurrentUser().then((userId) {
+          print('got userid');
           Firestore.instance
               .collection('users')
               .document(userId)
               .updateData({"location": _location});
         });
+        Navigator.of(context).pop();
       } catch (e) {
         //error
-        print('Error: $e');
+        print('Change Location Error: $e');
       }
     }
   }
@@ -66,7 +69,7 @@ class _LocationSettingsState extends State<LocationSettings> {
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text("close"),
+          child: Text("Cancel"),
           onPressed: () {
             Navigator.of(context).pop();
           },
