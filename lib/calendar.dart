@@ -60,45 +60,57 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 10.0,
-      ),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Calendar(
-            onSelectedRangeChange: (range) =>
-                print("Range is ${range.item1}, ${range.item2}"),
-            onDateSelected: (date) => handleNewDate(date),
-            isExpandable: true,
-          ),
-          Divider(
-            height: 50.0,
-          ),
-          // if (clicked == false)
-          //   Text('Nothing has been logged')
-          // else
-          Text('Mood: ${mood}'),
-          Text('Activity: ${activity}'),
-          if (emoji == null)
-            Text('Emoji: No Emoji')
-          else
-            if (emoji == 5)
-              Text('Emoji: 😃')
+        margin: EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 10.0,
+        ),
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Calendar(
+              onSelectedRangeChange: (range) =>
+                  print("Range is ${range.item1}, ${range.item2}"),
+              onDateSelected: (date) => handleNewDate(date),
+              isExpandable: true,
+            ),
+            Divider(
+              height: 50.0,
+            ),
+            Container(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Ink(
+                decoration: ShapeDecoration(
+                  color: Colors.pink,
+                  shape: CircleBorder(),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add),
+                  color: Colors.white,
+                  onPressed: () {
+                    print("filled background");
+                  },
+                ),
+              ),
+            ),
+            Text('Mood: ${mood}'),
+            Text('Activity: ${activity}'),
+            if (emoji == null)
+              Text('Emoji: No Emoji')
             else
-              if (emoji == 4)
-                Text('Emoji: 🙂')
+              if (emoji == 5)
+                Text('Emoji: 😃')
               else
-                if (emoji == 3)
-                  Text('Emoji: 😐')
+                if (emoji == 4)
+                  Text('Emoji: 🙂')
                 else
-                  if (emoji == 2)
-                    Text('Emoji: 🙁')
+                  if (emoji == 3)
+                    Text('Emoji: 😐')
                   else
-                    if (emoji == 1) Text('Emoji: ☹️'),
-        ],
-      ),
-    );
+                    if (emoji == 2)
+                      Text('Emoji: 🙁')
+                    else
+                      if (emoji == 1) Text('Emoji: ☹️'),
+          ],
+        ));
   }
 }
