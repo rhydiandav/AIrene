@@ -62,19 +62,16 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    FloatingActionButton(
+                    RaisedButton(
                       onPressed: () => {print('im pressed')},
-                      tooltip: 'Press Me',
                       child: Icon(Icons.pie_chart),
                     ),
-                    FloatingActionButton(
+                    RaisedButton(
                       onPressed: () => {print('im pressed')},
-                      tooltip: 'Press Me',
                       child: Icon(Icons.access_time),
                     ),
-                    FloatingActionButton(
+                    RaisedButton(
                       onPressed: () => {print('im pressed')},
-                      tooltip: 'Press Me',
                       child: Icon(Icons.mood),
                     ),
                   ],
