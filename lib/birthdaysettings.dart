@@ -51,10 +51,11 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Title"),
+      title: Text("Update Your Birthday"),
       content: Form(
         key: _formKey,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             DateTimePickerFormField(

@@ -79,49 +79,59 @@ class _HomePageState extends State<HomePage> {
         drawer: SizedBox(
           width: 200,
           child: Drawer(
-            child: ListView(
-              padding: EdgeInsets.all(0),
+            child: Column(
               children: <Widget>[
-                Container(
-                  height: 108,
-                  child: DrawerHeader(
-                      child: Text(_name != null ? _name : 'Profile',
-                          style: TextStyle(color: Colors.white, fontSize: 18)),
-                      decoration: BoxDecoration(color: Colors.pink)),
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.all(0),
+                    children: <Widget>[
+                      Container(
+                        height: 108,
+                        child: DrawerHeader(
+                            child: Text(_name != null ? _name : 'Profile',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18)),
+                            decoration: BoxDecoration(color: Colors.pink)),
+                      ),
+                      ListTile(
+                          title: Text("Birthday:"),
+                          subtitle: Text(_dob != null ? _dob : ""),
+                          trailing: Column(
+                            children: <Widget>[
+                              Container(
+                                  child: IconButton(
+                                icon: Icon(const IconData(59576,
+                                    fontFamily: 'MaterialIcons')),
+                                onPressed: () {
+                                  _showDialog('Birthday');
+                                },
+                              ))
+                            ],
+                          )),
+                      ListTile(
+                          title: Text("Location:"),
+                          subtitle:
+                              Text(_location != null ? _location : 'Earth'),
+                          trailing: Column(
+                            children: <Widget>[
+                              Container(
+                                  child: IconButton(
+                                icon: Icon(const IconData(59576,
+                                    fontFamily: 'MaterialIcons')),
+                                onPressed: () {
+                                  _showDialog('Location');
+                                },
+                              ))
+                            ],
+                          )),
+                    ],
+                  ),
                 ),
-                ListTile(
-                    title: Text("Birthday:"),
-                    subtitle: Text(_dob != null ? _dob : ""),
-                    trailing: Column(
-                      children: <Widget>[
-                        Container(
-                            child: IconButton(
-                          icon: Icon(const IconData(59576,
-                              fontFamily: 'MaterialIcons')),
-                          onPressed: () {
-                            _showDialog('Birthday');
-                          },
-                        ))
-                      ],
-                    )),
-                ListTile(
-                    title: Text("Location:"),
-                    subtitle: Text(_location != null ? _location : 'Earth'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Container(
-                            child: IconButton(
-                          icon: Icon(const IconData(59576,
-                              fontFamily: 'MaterialIcons')),
-                          onPressed: () {
-                            _showDialog('Location');
-                          },
-                        ))
-                      ],
-                    )),
-                ListTile(
-                  title: Text("Logout"),
-                  onTap: () {
+                RaisedButton(
+                  color: Colors.pink,
+                  textColor: Colors.white,
+                  child: Text("Logout"),
+                  onPressed: () {
                     _signOut();
                     Navigator.pop(context);
                   },

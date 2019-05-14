@@ -53,6 +53,7 @@ class _LocationSettingsState extends State<LocationSettings> {
       content: Form(
         key: _formKey,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextFormField(
