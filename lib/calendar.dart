@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar/flutter_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 
 class CalendarPage extends StatelessWidget {
   @override
@@ -37,7 +38,9 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   }
 
   void handleNewDate(date) {
-    print("handleNewDate $date");
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(date);
+    print(formattedDate);
     Firestore.instance
         .collection('users')
         .document(currentUser)
