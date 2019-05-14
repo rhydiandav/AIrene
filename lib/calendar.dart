@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar/flutter_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,7 +25,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   String mood = '';
   String activity = '';
   String currentUser = '';
-  int emoji = 1;
+  int emoji = 0;
 
   Future<String> getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -41,7 +42,6 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   void handleNewDate(date) {
     var formatter = new DateFormat('yyyy-MM-dd');
     var formattedDate = formatter.format(date);
-    print(emoji);
     Firestore.instance
         .collection('users')
         .document(currentUser)
@@ -76,21 +76,27 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
           Divider(
             height: 50.0,
           ),
+          // if (clicked == false)
+          //   Text('Nothing has been logged')
+          // else
           Text('Mood: ${mood}'),
           Text('Activity: ${activity}'),
-          if (emoji == 5)
-            Text('Emoji: 😃')
+          if (emoji == null)
+            Text('Emoji: No Emoji')
           else
-            if (emoji == 4)
-              Text('Emoji: 🙂')
+            if (emoji == 5)
+              Text('Emoji: 😃')
             else
-              if (emoji == 3)
-                Text('Emoji: 😐')
+              if (emoji == 4)
+                Text('Emoji: 🙂')
               else
-                if (emoji == 2)
-                  Text('Emoji: 🙁')
+                if (emoji == 3)
+                  Text('Emoji: 😐')
                 else
-                  if (emoji == 1) Text('Emoji: ☹️'),
+                  if (emoji == 2)
+                    Text('Emoji: 🙁')
+                  else
+                    if (emoji == 1) Text('Emoji: ☹️'),
         ],
       ),
     );
