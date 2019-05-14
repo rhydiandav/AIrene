@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Container(
             child: Column(children: [
-          Quote(),
+          FractionallySizedBox(widthFactor: 1, child: Quote()),
           Expanded(
             child: GridView.count(
               crossAxisCount: 3,

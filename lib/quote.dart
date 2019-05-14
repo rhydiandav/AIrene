@@ -5,20 +5,25 @@ class Quote extends StatelessWidget {
   final quotes = [
     {
       'quote': 'Nothing diminishes anxiety faster than action.',
-      'author': 'Walter Anderson'
+      'author': '- Walter Anderson'
     },
     {'quote': 'Smile, breathe, and go slowly.', 'author': 'Thich Nhat Hanh'},
     {
       'quote':
           'You don’t have to control your thoughts. You just have to stop letting them control you.',
-      'author': 'Dan Millman'
+      'author': '- Dan Millman'
+    },
+    {
+      'quote':
+          'Life is ten percent what you experience and ninety percent how you respond to it.',
+      'author': '- Dorothy M. Neddermeyer'
     }
   ];
 
   @override
   Widget build(BuildContext context) {
     final random = Random();
-    final quoteIndex = random.nextInt(2);
+    final quoteIndex = random.nextInt(3);
     return Container(
       margin: const EdgeInsets.all(20.0),
       padding: const EdgeInsets.symmetric(vertical: 10),
