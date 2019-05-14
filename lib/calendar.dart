@@ -24,6 +24,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   String mood = '';
   String activity = '';
   String currentUser = '';
+  int emoji = 1;
 
   Future<String> getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -39,18 +40,19 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
 
   void handleNewDate(date) {
     var formatter = new DateFormat('yyyy-MM-dd');
-    String formattedDate = formatter.format(date);
-    print(formattedDate);
+    var formattedDate = formatter.format(date);
+    print(emoji);
     Firestore.instance
         .collection('users')
         .document(currentUser)
         .collection('history')
-        .document('2019-05-13')
+        .document(formattedDate)
         .get()
         .then((DocumentSnapshot ds) {
       setState(() {
         mood = ds['mood'];
         activity = ds['activity'];
+        emoji = ds['emoji'];
       });
     });
   }
@@ -74,8 +76,21 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
           Divider(
             height: 50.0,
           ),
-          Text(mood),
-          Text(activity)
+          Text('Mood: ${mood}'),
+          Text('Activity: ${activity}'),
+          if (emoji == 5)
+            Text('Emoji: 😃')
+          else
+            if (emoji == 4)
+              Text('Emoji: 🙂')
+            else
+              if (emoji == 3)
+                Text('Emoji: 😐')
+              else
+                if (emoji == 2)
+                  Text('Emoji: 🙁')
+                else
+                  if (emoji == 1) Text('Emoji: ☹️'),
         ],
       ),
     );
