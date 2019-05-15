@@ -226,7 +226,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Quote()
+          Quote(),
+          Image.asset("assets/hellocatbot.png"),
         ]),
         floatingActionButton: FloatingActionButton(
             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),

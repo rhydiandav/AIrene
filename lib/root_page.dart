@@ -95,7 +95,7 @@ class _RootPageState extends State<RootPage> {
                     }
                   } else {
                     print('load');
-                    return HomePage();
+                    return Loading();
                   }
                 }));
     }
