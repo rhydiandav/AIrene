@@ -76,7 +76,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
           CardDialogflow(
             response.getListMessage()[0],
           ).title,
-      name: "Bot",
+      name: "CatBot",
       type: false,
     );
     setState(() {
@@ -136,12 +136,12 @@ class ChatMessage extends StatelessWidget {
     return <Widget>[
       Container(
         margin: const EdgeInsets.only(right: 16.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.pink,
-          child: Icon(
-            const IconData(59516, fontFamily: 'MaterialIcons'),
-            color: Colors.white,
-          ),
+        child: 
+        
+        CircleAvatar(
+          child: 
+          Image.asset("assets/chatavatar.png"),
+backgroundColor: Colors.pink[400]
         ),
       ),
       Expanded(
@@ -179,7 +179,7 @@ class ChatMessage extends StatelessWidget {
       Container(
         margin: const EdgeInsets.only(left: 16.0),
         child: CircleAvatar(
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.pink[400],
           child: Text(
             this.name[0],
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
