@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserInfo extends StatefulWidget {
-  UserInfo({this.auth, this.onSignedOut});
+class UserDetails extends StatefulWidget {
+  UserDetails({this.auth, this.onSignedOut});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
   @override
-  _UserInfoState createState() => _UserInfoState();
+  _UserDetailsState createState() => _UserDetailsState();
 }
 
-class _UserInfoState extends State<UserInfo> {
+class _UserDetailsState extends State<UserDetails> {
   String _name;
   String _dateofbirth;
   String _gender;
