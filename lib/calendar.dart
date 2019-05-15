@@ -74,23 +74,6 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   Widget build(BuildContext context) {
     print(mood);
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 10.0,
-      ),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Calendar(
-            onSelectedRangeChange: (range) =>
-                print("Range is ${range.item1}, ${range.item2}"),
-            onDateSelected: (date) => handleNewDate(date),
-            isExpandable: true,
-          ),
-          Divider(
-            height: 50.0,
-          ),
-
         margin: EdgeInsets.symmetric(
           horizontal: 5.0,
           vertical: 10.0,
