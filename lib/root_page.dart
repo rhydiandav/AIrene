@@ -5,7 +5,12 @@ import 'login.dart';
 import 'auth.dart';
 // import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'loading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:intl/intl.dart';
+
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -18,63 +23,27 @@ enum AuthStatus { notSignedIn, signedIn }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
-  String emojiState = '';
-  // today
+
+  bool loading = true;
+  String emojiState = 'hello';
+  String emoji;
 
   initState() {
     super.initState();
-    widget.auth.currentUser().then((userId) {
-      _didEmoji();
+    getDetails().then((userDetails) => {
+          
+          setState(() {
+            authStatus = userDetails['UID'] == null
+                ? AuthStatus.notSignedIn
+                : AuthStatus.signedIn;
 
-      setState(() {
-        authStatus =
-            userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
-        userId = userId;
-      });
-    });
-
-    // setState(() {
-    //   emojiState = 'today';
-
-    // });
-  }
-
-  Future<void> _didEmoji() async {
-    print(widget.auth);
-    widget.auth.currentUser().then((userId) => {
-          print(userId),
-          Firestore.instance
-              .collection('users')
-              .document(userId)
-              .get()
-              .then((DocumentSnapshot ds) {
-            if (ds.data[
-                    "${DateFormat('yyyy-MM-dd').format(new DateTime.now())}"] ==
-                null) {
-              print('no emoji today');
-              setState(() {
-                emojiState = 'not today';
-              });
-            } else {
-              print('you have entered an emoji today');
-              setState(() {
-                emojiState = 'today';
-              });
-            }
-          }),
+          })
         });
+
   }
 
-  // initState() {
-  //   super.initState();
-  //   widget.auth.currentUser().then((userId) {
-  //     setState(() {
-  //       authStatus =
-  //           userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
-  //       userId = userId;
-  //     });
-  //   });
-  // }
+ 
+
 
   void _signedIn() {
     setState(() {
@@ -88,6 +57,26 @@ class _RootPageState extends State<RootPage> {
     });
   }
 
+
+  Future<String> getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
+  }
+
+  Future getDetails() async {
+    var currentUser = await getCurrentUser();
+    var userDetails = await Firestore.instance
+        .collection('users')
+        .document(currentUser)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return (ds.data);
+    });
+    print(userDetails);
+    return userDetails;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     switch (authStatus) {
@@ -97,47 +86,37 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        {
-          switch (emojiState) {
-            case 'today':
-              return HomePage(
-                auth: widget.auth,
-                onSignedOut: _signedOut,
-              );
-            case 'not today':
-              return EmojiSelector(
-                auth: widget.auth,
-                onSignedOut: _signedOut,
-              );
-          }
-        }
-      // case AuthStatus.signedIn:
-      // widget.auth.currentUser().then((userId) {
-      //   Firestore.instance
-      //       .collection('users')
-      //       .document(userId)
-      //       .get()
-      //       .then((DocumentSnapshot ds) {
-      //     print(ds.data["UID"]);
-      //     if (ds.data["name"]) {
 
-      // TODO if(there is a container with todays date on the user then navigate to hompage if not navigate to emoji page)
-// if(Firestore.instance.collection('users').document(userId) == )
+        return Container(
+            child: FutureBuilder(
+                future: getDetails(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('snapshot');
+                  if (snapshot.hasData) {
+                    print('has data');
+                    if (snapshot.data["name"] != null) {
+                      print('snapshot has data');
+            
+                      return HomePage(
+                        auth: widget.auth,
+                        onSignedOut: _signedOut,
+                      );
 
-      // return EmojiSelector(
-      //   auth: widget.auth,
-      //   onSignedOut: _signedOut,
-      // );
+                    } else {
+                      return UserDetails(
+                        auth: widget.auth,
+                        onSignedOut: _signedOut,
+                      );
+                     
+                    }
+                  } else {
+                    print('load');
+                    return Loading();
+                  }
+                }));
 
-      // return HomePage(
-      //   auth: widget.auth,
-      //   onSignedOut: _signedOut,
-      // );
-      // } else {
-      //   return UserInfo;
-      // }
-      // });
+
     }
-    // );
+   
   }
 }
