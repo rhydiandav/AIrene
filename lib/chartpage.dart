@@ -12,7 +12,7 @@ class MoodLine {
   final charts.Color color;
 
   MoodLine(this.date, this.mood, Color color)
-      : this.color = new charts.Color(
+      : this.color = charts.Color(
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }
 
@@ -47,6 +47,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
         child: chart,
       ),
     );
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Line Chart'),

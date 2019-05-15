@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'homepage.dart';
-import 'package:intl/intl.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-class UserDetails extends StatefulWidget {
-  UserDetails({this.auth, this.onSignedOut});
+class UserInfo extends StatefulWidget {
+  UserInfo({this.auth, this.onSignedOut});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
   @override
-  _UserDetailsState createState() => _UserDetailsState();
+  _UserInfoState createState() => _UserInfoState();
 }
 
-class _UserDetailsState extends State<UserDetails> {
+class _UserInfoState extends State<UserInfo> {
   String _name;
   String _dateofbirth;
-  String _location;
+  String _gender;
+  // List _hobbies;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -36,10 +34,8 @@ class _UserDetailsState extends State<UserDetails> {
         //post name dob gender hobbies to db
         widget.auth.currentUser().then((userId) {
           Firestore.instance.collection('users').document(userId).updateData(
-              {"name": _name, "dob": _dateofbirth, "location": _location});
+              {"name": _name, "dob": _dateofbirth, "gender": _gender});
         });
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
       } catch (e) {
         //error
         print('Error: $e');
@@ -71,19 +67,16 @@ class _UserDetailsState extends State<UserDetails> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'location',
+                      labelText: 'gender',
                     ),
-                    onSaved: (value) => _location = value,
+                    onSaved: (value) => _gender = value,
                   ),
-                  DateTimePickerFormField(
-                      inputType: InputType.date,
-                      format: DateFormat('yyyy-MM-dd'),
-                      editable: true,
-                      decoration: InputDecoration(
-                          labelText: 'Date of Birth',
-                          hasFloatingPlaceholder: false),
-                      onSaved: (dt) =>
-                          _dateofbirth = dt.toIso8601String().substring(0, 10)),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'date_ of birth',
+                    ),
+                    onSaved: (value) => _dateofbirth = value,
+                  ),
                   RaisedButton(
                       child: Text('Done!'),
                       onPressed: () => {
