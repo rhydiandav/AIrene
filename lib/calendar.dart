@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar/flutter_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +22,7 @@ class CalendarViewApp extends StatefulWidget {
 }
 
 class _CalendarViewAppState extends State<CalendarViewApp> {
-  String date = '';
+  DateTime newDate;
   String mood = '';
   String activity = '';
   String currentUser = '';
@@ -44,6 +43,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
   handleNewDate(date) {
     var formatter = new DateFormat('yyyy-MM-dd');
     var formattedDate = formatter.format(date);
+
     Firestore.instance
         .collection('users')
         .document(currentUser)
@@ -52,25 +52,27 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
         .get()
         .then((DocumentSnapshot ds) {
       setState(() {
-        date = formattedDate;
-        mood = ds['mood'];
-        activity = ds['activity'];
+        mood = ds.exists ? ds['mood'] : "No mood recorded";
+        activity = ds.exists ? ds['activity'] : "No activity recorded";
         emoji = ds['emoji'];
       });
     });
   }
 
-  void _showDialog(setting) {
-    print(date);
+  void _showDialog(setting, newDate) {
+    var formatter = new DateFormat('yyyy-MM-dd');
+    var formattedDate = formatter.format(newDate);
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AddToCalendar(date: date);
+          return AddToCalendar(date: formattedDate);
         });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(mood);
     return Container(
         margin: EdgeInsets.symmetric(
           horizontal: 5.0,
@@ -82,7 +84,12 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
             Calendar(
               onSelectedRangeChange: (range) =>
                   print("Range is ${range.item1}, ${range.item2}"),
-              onDateSelected: (date) => handleNewDate(date),
+              onDateSelected: (date) => {
+                    setState(() {
+                      newDate = date;
+                    }),
+                    handleNewDate(date),
+                  },
               isExpandable: true,
             ),
             Divider(
@@ -99,32 +106,28 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                   icon: Icon(Icons.add),
                   color: Colors.white,
                   onPressed: () {
-                    _showDialog('activity');
+                    _showDialog('activity', newDate);
                   },
                 ),
               ),
             ),
             Text('Mood: ${mood}'),
-            if (activity == null)
-              Text('Please add your activity')
-            else
-              Text('Activity: ${activity}'),
-            if (emoji == null)
-              Text('Emoji: No Emoji')
-            else
-              if (emoji == 5)
-                Text('Emoji: 😃')
-              else
-                if (emoji == 4)
-                  Text('Emoji: 🙂')
-                else
-                  if (emoji == 3)
-                    Text('Emoji: 😐')
-                  else
-                    if (emoji == 2)
-                      Text('Emoji: 🙁')
-                    else
-                      if (emoji == 1) Text('Emoji: ☹️'),
+            activity == null
+                ? Text('Please add your activity')
+                : Text('Activity: ${activity}'),
+            (emoji == null)
+                ? Text('Emoji: No Emoji')
+                : (emoji == 5)
+                    ? Text('Emoji: 😃')
+                    : (emoji == 4)
+                        ? Text('Emoji: 🙂')
+                        : (emoji == 3)
+                            ? Text('Emoji: 😐')
+                            : (emoji == 2)
+                                ? Text('Emoji: 🙁')
+                                : (emoji == 1)
+                                    ? Text('Emoji: ☹️')
+                                    : Text('Emoji: No Emoji')
           ],
         ));
   }

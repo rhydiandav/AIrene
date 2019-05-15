@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AddToCalendar extends StatefulWidget {
   AddToCalendar({this.date});
   final String date;
+
   @override
   _AddToCalendarState createState() => _AddToCalendarState();
 }
@@ -28,6 +29,7 @@ class _AddToCalendarState extends State<AddToCalendar> {
   }
 
   void validateAndSubmit() {
+    print(widget.date);
     if (validateAndSave()) {
       try {
         getCurrentUser().then((userId) {
@@ -37,7 +39,7 @@ class _AddToCalendarState extends State<AddToCalendar> {
               .document(userId)
               .collection('history')
               .document(widget.date)
-              .updateData({"activity": _activities});
+              .setData({"activity": _activities}, merge: true);
         });
         Navigator.of(context).pop();
       } catch (e) {
