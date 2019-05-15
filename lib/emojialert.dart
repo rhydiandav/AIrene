@@ -5,8 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class EmojiAlert extends StatelessWidget {
-  // EmojiAlert({this.emojiPresent});
-  // String emojiPresent;
+  EmojiAlert({this.emojiPresent});
+  String emojiPresent;
 
   Future<String> getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
