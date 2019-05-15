@@ -37,9 +37,9 @@ class EmojiAlert extends StatelessWidget {
                           Firestore.instance
                               .collection("users")
                               .document(userId)
-                              .updateData({
-                            now: {'emoji': 5}
-                          });
+                              .collection("history")
+                              .document(now)
+                              .setData({'emoji': 5});
                         });
                       } catch (e) {
                         print("Error: $e");
@@ -58,9 +58,9 @@ class EmojiAlert extends StatelessWidget {
                           Firestore.instance
                               .collection("users")
                               .document(userId)
-                              .updateData({
-                            now: {'emoji': 4}
-                          });
+                              .collection("history")
+                              .document(now)
+                              .setData({'emoji': 4});
                         });
                       } catch (e) {
                         print("Error: $e");
@@ -79,9 +79,9 @@ class EmojiAlert extends StatelessWidget {
                           Firestore.instance
                               .collection("users")
                               .document(userId)
-                              .updateData({
-                            now: {'emoji': 3}
-                          });
+                              .collection("history")
+                              .document(now)
+                              .setData({'emoji': 3});
                         });
                       } catch (e) {
                         print("Error: $e");
@@ -100,9 +100,9 @@ class EmojiAlert extends StatelessWidget {
                           Firestore.instance
                               .collection("users")
                               .document(userId)
-                              .updateData({
-                            now: {'emoji': 2}
-                          });
+                              .collection("history")
+                              .document(now)
+                              .setData({'emoji': 2});
                         });
                       } catch (e) {
                         print("Error: $e");
@@ -121,9 +121,9 @@ class EmojiAlert extends StatelessWidget {
                           Firestore.instance
                               .collection("users")
                               .document(userId)
-                              .updateData({
-                            now: {'emoji': 1}
-                          });
+                              .collection("history")
+                              .document(now)
+                              .setData({'emoji': 1});
                         });
                       } catch (e) {
                         print("Error: $e");
@@ -135,27 +135,6 @@ class EmojiAlert extends StatelessWidget {
           ],
         ),
       ),
-      actions: <Widget>[
-        new FlatButton(
-          child: new Text("OK"),
-          onPressed: () {
-            print('here...');
-            try {
-              getCurrentUser().then((userId) {
-                Firestore.instance
-                    .collection("users")
-                    .document(userId)
-                    .updateData({
-                  now: {'emoji': 5}
-                });
-              });
-            } catch (e) {
-              print("Error: $e");
-            }
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
     );
   }
 }
