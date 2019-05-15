@@ -26,6 +26,7 @@ class MoodLine {
 class _MoodOverTimeState extends State<MoodOverTime> {
   List<MoodLine> moodData = [];
   List<MoodLine> listSlice;
+  int fontSize = 0;
 
   List colours = [
     Colors.blue,
@@ -54,7 +55,11 @@ class _MoodOverTimeState extends State<MoodOverTime> {
               return CircularProgressIndicator();
             default:
               snapshot.data.documents.forEach((ds) => moodData.add(
-                    MoodLine(ds.documentID, ds.data['emoji'],
+                    MoodLine(
+                        ds.documentID.substring(5, 7) +
+                            '/' +
+                            ds.documentID.substring(8, 10),
+                        ds.data['emoji'],
                         colours[ds.data['emoji']]),
                   ));
 
@@ -76,7 +81,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                         minimumPaddingBetweenLabelsPx: 0,
                         labelAnchor: charts.TickLabelAnchor.before,
                         labelStyle: new charts.TextStyleSpec(
-                            fontSize: 8, // size in Pts.
+                            fontSize: fontSize, // size in Pts.
                             color: charts.MaterialPalette.black),
                         lineStyle: new charts.LineStyleSpec(
                             color: charts.MaterialPalette.black))),
@@ -108,6 +113,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData.sublist(0, 7);
+                                        fontSize = 10;
                                       })
                                     },
                                 child: Text('7'),
@@ -116,6 +122,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData.sublist(0, 30);
+                                        fontSize = 3;
                                       })
                                     },
                                 child: Text('30'),
@@ -124,6 +131,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData;
+                                        fontSize = 0;
                                       })
                                     },
                                 child: Text('All'),
