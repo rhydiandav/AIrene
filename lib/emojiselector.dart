@@ -31,6 +31,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text('How are you feeling today?'),
       ),
