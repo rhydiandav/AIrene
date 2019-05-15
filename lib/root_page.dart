@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project/emojiselector.dart';
 import 'homepage.dart';
 import 'login.dart';
 import 'auth.dart';
-// import 'user_info.dart';
+import 'user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:intl/intl.dart';
-
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -31,19 +26,13 @@ class _RootPageState extends State<RootPage> {
   initState() {
     super.initState();
     getDetails().then((userDetails) => {
-          
           setState(() {
             authStatus = userDetails['UID'] == null
                 ? AuthStatus.notSignedIn
                 : AuthStatus.signedIn;
-
           })
         });
-
   }
-
- 
-
 
   void _signedIn() {
     setState(() {
@@ -56,7 +45,6 @@ class _RootPageState extends State<RootPage> {
       authStatus = AuthStatus.notSignedIn;
     });
   }
-
 
   Future<String> getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -76,7 +64,6 @@ class _RootPageState extends State<RootPage> {
     return userDetails;
   }
 
-
   @override
   Widget build(BuildContext context) {
     switch (authStatus) {
@@ -86,7 +73,6 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-
         return Container(
             child: FutureBuilder(
                 future: getDetails(),
@@ -96,27 +82,22 @@ class _RootPageState extends State<RootPage> {
                     print('has data');
                     if (snapshot.data["name"] != null) {
                       print('snapshot has data');
-            
+
                       return HomePage(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );
-
                     } else {
                       return UserDetails(
                         auth: widget.auth,
                         onSignedOut: _signedOut,
                       );
-                     
                     }
                   } else {
                     print('load');
                     return Loading();
                   }
                 }));
-
-
     }
-   
   }
 }
