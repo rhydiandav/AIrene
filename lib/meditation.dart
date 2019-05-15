@@ -1,5 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'homepage.dart';
 
 class Meditation extends StatefulWidget {
   _MeditationState createState() => _MeditationState();
@@ -13,8 +14,8 @@ class _MeditationState extends State<Meditation>
   void initState() {
     super.initState();
     controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    animation = Tween<double>(begin: 0, end: 300).animate(controller)
+        AnimationController(duration: const Duration(seconds: 4), vsync: this);
+    animation = Tween<double>(begin: 0, end: 280).animate(controller)
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           controller.reverse();
@@ -27,7 +28,11 @@ class _MeditationState extends State<Meditation>
   }
 
   @override
-  Widget build(BuildContext context) => AnimatedLogo(animation: animation);
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text("Meditation")),
+        body: AnimatedLogo(animation: animation));
+  }
 
   @override
   void dispose() {
@@ -47,7 +52,14 @@ class AnimatedLogo extends AnimatedWidget {
         margin: EdgeInsets.symmetric(vertical: 10),
         height: animation.value,
         width: animation.value,
-        child: FlutterLogo(),
+        child: Center(
+          child: Container(
+            width: 300.0,
+            height: 300.0,
+            decoration:
+                BoxDecoration(color: Colors.pink, shape: BoxShape.circle),
+          ),
+        ),
       ),
     );
   }
