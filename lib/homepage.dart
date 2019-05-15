@@ -5,9 +5,14 @@ import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
+
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'emojialert.dart';
+
+import 'quote.dart';
+import 'resources.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -166,38 +171,52 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: Container(
-          child: GridView.count(
-            crossAxisCount: 3,
-            childAspectRatio: 1.0,
-            padding: const EdgeInsets.all(3.0),
-            mainAxisSpacing: 3.0,
-            crossAxisSpacing: 3.0,
-            children: <Widget>[
-              GridTile(
-                child: IconButton(
-                  icon:
-                      Icon(const IconData(59701, fontFamily: 'MaterialIcons')),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CalendarPage()),
-                    );
-                  },
+            child: Column(children: [
+          FractionallySizedBox(widthFactor: 1, child: Quote()),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 3,
+              childAspectRatio: 1.0,
+              padding: const EdgeInsets.all(3.0),
+              mainAxisSpacing: 3.0,
+              crossAxisSpacing: 3.0,
+              children: <Widget>[
+                GridTile(
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(59701, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CalendarPage()),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              GridTile(
-                child: Icon(const IconData(58902,
-                    fontFamily: 'MaterialIcons', matchTextDirection: true)),
-              ),
-              GridTile(
-                child: Icon(const IconData(57936, fontFamily: 'MaterialIcons')),
-              ),
-              GridTile(
-                child: Icon(const IconData(59517, fontFamily: 'MaterialIcons')),
-              )
-            ],
+                GridTile(
+                  child: Icon(const IconData(58902,
+                      fontFamily: 'MaterialIcons', matchTextDirection: true)),
+                ),
+                GridTile(
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(57936, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Resources()),
+                      );
+                    },
+                  ),
+                ),
+                GridTile(
+                  child:
+                      Icon(const IconData(59517, fontFamily: 'MaterialIcons')),
+                )
+              ],
+            ),
           ),
-        ),
+        ])),
         floatingActionButton: FloatingActionButton(
             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
             onPressed: () {

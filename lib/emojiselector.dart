@@ -1,9 +1,11 @@
+
 import "package:flutter/material.dart";
 import "./homepage.dart";
 import "auth.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:intl/intl.dart";
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class EmojiSelector extends StatefulWidget {
   EmojiSelector({this.auth, this.onSignedOut});
@@ -16,22 +18,21 @@ class EmojiSelector extends StatefulWidget {
 }
 
 class _EmojiSelectorState extends State<EmojiSelector> {
-  // Future<String> getCurrentUser() async {
-  //   FirebaseUser user = await FirebaseAuth.instance.currentUser();
-  //   return user.uid;
-  // }
 
-  var date = DateFormat("yyyy-MM-dd").format(new DateTime.now());
+  var date = DateFormat('yyyy-MM-dd').format(new DateTime.now());
+
 
   void sendEmoji(emojiNumber, date) {
     try {
       widget.auth.currentUser().then((userId) {
-        Firestore.instance.collection("users").document(userId).updateData({
-          date: {'emoji': emojiNumber}
+
+        Firestore.instance.collection('users').document(userId).updateData({
+          date: {"emoji": emojiNumber}
         });
       });
     } catch (e) {
-      print("Error: $e");
+      print('Error: $e');
+
     }
   }
 
@@ -85,7 +86,6 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
-                    sendEmoji(3, date);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -102,6 +102,7 @@ class _EmojiSelectorState extends State<EmojiSelector> {
                     style: TextStyle(fontSize: 50.0),
                   ),
                   onTap: () {
+
                     sendEmoji(2, date);
                     Navigator.push(
                       context,
