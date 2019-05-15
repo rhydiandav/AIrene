@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
 import 'quote.dart';
+import 'resources.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -169,8 +170,16 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
                 ),
                 GridTile(
-                  child:
-                      Icon(const IconData(57936, fontFamily: 'MaterialIcons')),
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(57936, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Resources()),
+                      );
+                    },
+                  ),
                 ),
                 GridTile(
                   child:
