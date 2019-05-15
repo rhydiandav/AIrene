@@ -5,8 +5,16 @@ import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
+
 import 'chartpage.dart';
+
+import 'package:intl/intl.dart';
+import 'dart:async';
+import 'emojialert.dart';
+
 import 'quote.dart';
+import 'resources.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -22,20 +30,42 @@ class _HomePageState extends State<HomePage> {
   String _name;
   String _dob;
   String _location;
+  String emojiPresent;
+
+  String emoji;
+
+  var now = DateFormat("yyyy-MM-dd").format(new DateTime.now());
 
   initState() {
     super.initState();
-
     setDetailsState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showAlert();
+    });
   }
 
-  setDetailsState() {
+  void setDetailsState() {
     getUserDetails().then((userDetails) => {
-          setState(() {
-            _name = userDetails["name"];
-            _dob = userDetails["dob"];
-            _location = userDetails["location"];
-          })
+          setState(
+            () {
+              _name = userDetails["name"];
+              _dob = userDetails["dob"];
+              _location = userDetails["location"];
+              emojiPresent = userDetails[
+                      '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}']
+                  .toString();
+            },
+          ),
+        });
+  }
+
+  void _showAlert() {
+    print('');
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return EmojiAlert();
         });
   }
 
@@ -57,7 +87,6 @@ class _HomePageState extends State<HomePage> {
         .then((DocumentSnapshot ds) {
       return (ds.data);
     });
-
     return userDetails;
   }
 
@@ -74,6 +103,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // _showAlert();
     return Scaffold(
         appBar: AppBar(
           title: Text("Welcome"),
@@ -137,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                     _signOut();
                     Navigator.pop(context);
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -183,7 +213,15 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GridTile(
                   child:
-                      Icon(const IconData(57936, fontFamily: 'MaterialIcons')),
+                      IconButton(
+                        icon: const IconData(57936, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Resources()),
+                      );
+                    },
+                  ),
                 ),
                 GridTile(
                   child:
