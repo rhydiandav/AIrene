@@ -79,24 +79,24 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
           // if (clicked == false)
           //   Text('Nothing has been logged')
           // else
-          Text('Mood: ${mood}'),
-          Text('Activity: ${activity}'),
-          if (emoji == null)
-            Text('Emoji: No Emoji')
-          else
-            if (emoji == 5)
-              Text('Emoji: 😃')
-            else
-              if (emoji == 4)
-                Text('Emoji: 🙂')
-              else
-                if (emoji == 3)
-                  Text('Emoji: 😐')
-                else
-                  if (emoji == 2)
-                    Text('Emoji: 🙁')
-                  else
-                    if (emoji == 1) Text('Emoji: ☹️'),
+          // Text('Mood: ${mood}'),
+          // Text('Activity: ${activity}'),
+          // if (emoji == null)
+          //   Text('Emoji: No Emoji')
+          // else
+          //   if (emoji == 5)
+          //     Text('Emoji: 😃')
+          //   else
+          //     if (emoji == 4)
+          //       Text('Emoji: 🙂')
+          //     else
+          //       if (emoji == 3)
+          //         Text('Emoji: 😐')
+          //       else
+          //         if (emoji == 2)
+          //           Text('Emoji: 🙁')
+          //         else
+          //           if (emoji == 1) Text('Emoji: ☹️'),
         ],
       ),
     );
