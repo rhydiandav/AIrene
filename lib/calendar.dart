@@ -72,9 +72,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
 
   @override
   Widget build(BuildContext context) {
-    print(mood);
     return Container(
-
         margin: EdgeInsets.symmetric(
           horizontal: 5.0,
           vertical: 10.0,
