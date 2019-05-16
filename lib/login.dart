@@ -66,23 +66,17 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  //  backgroundColor: Colors.transparent,
-        appBar: AppBar(title: Text("AIrene",  style: new TextStyle(
-              fontFamily: "Times New Roman",
-              fontSize: 30.0,
-              color: Colors.white
-            ),)),
+      // appBar: AppBar(),
       body: Center(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Form(
               key: formKey,
               child: Column(
-                
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: buildInputs() + buildSubmitButtons(),
-                  
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: buildInputs() + buildSubmitButtons(),
               ),
             ),
           ),
@@ -93,13 +87,56 @@ class _LogInState extends State<LogIn> {
 
   List<Widget> buildInputs() {
     return [
-      Image.asset("assets/welcomecatbot.png"),
-      TextFormField(
-        decoration: InputDecoration(
-          labelText: 'Email',
+      Image.asset("assets/welcomecatbot.png", height: 180),
+      Container(
+        // constraints: BoxConstraints.expand(height: 280),
+        // decoration: BoxDecoration(
+        //   // shape: BoxShape.circle,
+        //   // color: Colors.teal[200],
+        //   image: DecorationImage(
+        //       image: AssetImage("assets/welcomecatbot.png"), fit: BoxFit.cover),
+        // ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  'AI',
+                  style: TextStyle(
+                      fontFamily: 'VT323',
+                      fontSize: 70,
+                      height: 0.8,
+                      color: Colors.teal[900]),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'rene',
+                  style: TextStyle(
+                      fontFamily: 'Sacramento',
+                      fontSize: 80,
+                      height: 0.3,
+                      color: Colors.teal[900]),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            Text('your personal stress bot',
+                style: TextStyle(fontFamily: 'Bad Script', fontSize: 30)),
+          ],
         ),
-        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-        onSaved: (value) => _email = value,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: 'Email',
+          ),
+          validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+          onSaved: (value) => _email = value,
+        ),
       ),
       TextFormField(
         decoration: InputDecoration(
@@ -116,39 +153,47 @@ class _LogInState extends State<LogIn> {
     if (_formType == FormType.login) {
       return [
         Padding(
-          
-         padding: EdgeInsets.only(left: 40.0 , right: 40.0, top: 10.0),
-         child: RaisedButton(
-           elevation: 5.0,
-         textColor: Colors.white,
-         color: Colors.teal[200],
-         child: Text(
-          "Login",
-         style: TextStyle(
-            fontSize: 20.0,
-          )),
-         onPressed: validateAndSubmit,
-         shape: new RoundedRectangleBorder(
-         borderRadius: new BorderRadius.circular(30.0))),
-       ),
-        FlatButton(
-          child: Text(
-            "Create an account",
-            style: TextStyle(fontSize: 20.0),
-          ),
-          onPressed: moveToRegister,
+          padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+          child: RaisedButton(
+              elevation: 5.0,
+              textColor: Colors.white,
+              color: Colors.teal[200],
+              child: Text("Login",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  )),
+              onPressed: validateAndSubmit,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0))),
         ),
-      ];
-    } else {
-      return [
-        RaisedButton(
+        FlatButton(
           child: Text(
             "Create an account",
             style: TextStyle(
               fontSize: 20.0,
             ),
           ),
-          onPressed: validateAndSubmit,
+          onPressed: moveToRegister,
+        ),
+      ];
+    } else {
+      return [
+        Padding(
+          padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+          child: RaisedButton(
+            elevation: 5.0,
+            textColor: Colors.white,
+            color: Colors.teal[200],
+            child: Text(
+              "Create an account",
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30.0)),
+            onPressed: validateAndSubmit,
+          ),
         ),
         FlatButton(
           child: Text(
