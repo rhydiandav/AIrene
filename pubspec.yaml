@@ -81,7 +81,14 @@ flutter:
       fonts:
         - asset: fonts/Fira_Sans/FiraSans-Regular.ttf
 
-  #
+    - family: VT323
+      fonts:
+        - asset: fonts/VT323/VT323-Regular.ttf
+
+    - family: Sacramento
+      fonts:
+        - asset: fonts/Sacramento/Sacramento-Regular.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
 

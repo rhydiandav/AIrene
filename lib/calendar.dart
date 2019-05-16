@@ -95,8 +95,6 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                   isExpandable: true,
                 ),
               ),
-
-
               Column(
                 children: <Widget>[
                   Container(
@@ -119,7 +117,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                     color: Colors.blue[50],
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Share'),
+                                    fontFamily: 'Fira Sans'),
                               ),
                               Text(' $mood',
                                   textAlign: TextAlign.center,
@@ -143,7 +141,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                           color: Colors.blue[50],
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: 'Share')),
+                                          fontFamily: 'Fira Sans')),
                                   Text('$activity',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
@@ -159,7 +157,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                           color: Colors.blue[50],
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: 'Share')),
+                                          fontFamily: 'Fira Sans')),
                                   Text('No Emoji',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
@@ -175,7 +173,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                               color: Colors.blue[50],
                                               fontSize: 30,
                                               fontWeight: FontWeight.bold,
-                                              fontFamily: 'Share')),
+                                              fontFamily: 'Fira Sans')),
                                       Text(' 😃',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -191,7 +189,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                                   color: Colors.blue[50],
                                                   fontSize: 30,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Share')),
+                                                  fontFamily: 'Fira Sans')),
                                           Text('🙂',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
@@ -208,7 +206,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                                       fontSize: 30,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontFamily: 'Share')),
+                                                      fontFamily: 'Fira Sans')),
                                               Text('😐',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
@@ -226,7 +224,8 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                                           fontSize: 30,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          fontFamily: 'Share')),
+                                                          fontFamily:
+                                                              'Fira Sans')),
                                                   Text('🙁',
                                                       textAlign:
                                                           TextAlign.center,
@@ -248,7 +247,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                                                   FontWeight
                                                                       .bold,
                                                               fontFamily:
-                                                                  'Share')),
+                                                                  'Fira Sans')),
                                                       Text('☹️',
                                                           textAlign:
                                                               TextAlign.center,
@@ -270,7 +269,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                                                                   FontWeight
                                                                       .bold,
                                                               fontFamily:
-                                                                  'Share')),
+                                                                  'Fira Sans')),
                                                       Text('No Emoji',
                                                           textAlign:
                                                               TextAlign.center,
@@ -297,7 +296,6 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
             _showDialog('activity', newDate);
           },
           backgroundColor: Colors.teal[200],
-
         ));
   }
 }

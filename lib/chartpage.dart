@@ -37,6 +37,8 @@ class _MoodOverTimeState extends State<MoodOverTime> {
     Colors.blue[200]
   ];
 
+  List<String> emojis = ['hello', '😀', '🙂', '😐', '🙁', '😢'];
+
   @override
   void initState() {
     super.initState();
@@ -69,7 +71,7 @@ class _MoodOverTimeState extends State<MoodOverTime> {
                   measureFn: (MoodLine clickData, _) => clickData.mood,
                   colorFn: (MoodLine clickData, _) => clickData.color,
                   id: 'Clicks',
-                  data: listSlice == null ? moodData : listSlice,
+                  data: listSlice == null ? moodData.sublist(0, 7) : listSlice,
                 ),
               ];
 
