@@ -95,6 +95,8 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                   isExpandable: true,
                 ),
               ),
+
+
               Column(
                 children: <Widget>[
                   Container(
@@ -295,6 +297,7 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
             _showDialog('activity', newDate);
           },
           backgroundColor: Colors.teal[200],
+
         ));
   }
 }
