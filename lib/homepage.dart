@@ -140,7 +140,9 @@ class _HomePageState extends State<HomePage> {
                         )),
                     ListTile(
                         title: Text("Location:"),
+
                         subtitle: Text(_location != null ? _location : 'Manchester'),
+
                         trailing: Column(
                           children: <Widget>[
                             Container(
@@ -154,6 +156,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         )),
                   ],
+
                 ),
               ),
               SizedBox(
@@ -219,6 +222,7 @@ class _HomePageState extends State<HomePage> {
                           icon: Icon(const IconData(59105,
                               fontFamily: 'MaterialIcons')),
 
+
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -227,6 +231,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
+
 
                     ),
                     
@@ -242,6 +247,7 @@ class _HomePageState extends State<HomePage> {
                         child: IconButton(
                           icon: Icon(const IconData(57936,
                               fontFamily: 'MaterialIcons')),
+
 
                     onPressed: () {
                       Navigator.push(
@@ -279,6 +285,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+
 ),
                Quote(),
         Image.asset("assets/hellocatbot.png")
@@ -311,6 +318,7 @@ backgroundColor: Colors.teal[200]
 
   
      
+
 
     );
   }

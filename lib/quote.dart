@@ -79,8 +79,10 @@ class Quote extends StatelessWidget {
           Text(quotes[quoteIndex]['quote'],
               textAlign: TextAlign.center,
               style: TextStyle(
+
                 fontFamily: 'Delius',
-                  color: Colors.pink,
+                  color: Colors.teal,
+
                   fontSize: 30)),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -88,7 +90,9 @@ class Quote extends StatelessWidget {
               Text(quotes[quoteIndex]['author'],
                   textAlign: TextAlign.right,
                   style: TextStyle(
-                      color: Colors.pink,
+
+                      color: Colors.teal,
+
                       fontSize: 15)),
             ],
           )
