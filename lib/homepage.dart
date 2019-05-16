@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     ListTile(
                         title: Text("Location:"),
-                        subtitle: Text(_location != null ? _location : 'Earth'),
+                        subtitle: Text(_location != null ? _location : 'Manchester'),
                         trailing: Column(
                           children: <Widget>[
                             Container(
