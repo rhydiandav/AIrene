@@ -58,6 +58,7 @@ class AnimatedCircle extends AnimatedWidget {
               child: Column(
                 children: <Widget>[
                   Container(
+
                     margin: EdgeInsets.symmetric(
                       vertical: 200,
                     ),
