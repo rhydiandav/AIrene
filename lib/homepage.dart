@@ -187,7 +187,8 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CalendarPage()),
+                        MaterialPageRoute(
+                            builder: (context) => CalendarViewApp()),
                       );
                     },
                   ),
@@ -209,9 +210,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 GridTile(
-                  child:
-                      IconButton(
-                        icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(57936, fontFamily: 'MaterialIcons')),
                     onPressed: () {
                       Navigator.push(
                         context,
