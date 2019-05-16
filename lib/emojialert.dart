@@ -18,18 +18,21 @@ class EmojiAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("How are you feeling today?"),
+      title: Text("How are you feeling today?",
+          textAlign: TextAlign.center, textScaleFactor: .7),
       content: Container(
-        padding: EdgeInsets.all(20.0),
-        child: Row(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
                     child: Text(
                       '😀',
-                      style: TextStyle(fontSize: 30.0),
+                      style: TextStyle(fontSize: 80.0),
                     ),
                     onTap: () {
                       try {
@@ -48,10 +51,11 @@ class EmojiAlert extends StatelessWidget {
                     })
               ],
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
-                    child: Text('🙂', style: TextStyle(fontSize: 30.0)),
+                    child: Text('🙂', style: TextStyle(fontSize: 75.0)),
                     onTap: () {
                       try {
                         getCurrentUser().then((userId) {
@@ -69,10 +73,11 @@ class EmojiAlert extends StatelessWidget {
                     })
               ],
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
-                    child: Text('😐', style: TextStyle(fontSize: 30.0)),
+                    child: Text('😐', style: TextStyle(fontSize: 70.0)),
                     onTap: () {
                       try {
                         getCurrentUser().then((userId) {
@@ -90,10 +95,11 @@ class EmojiAlert extends StatelessWidget {
                     })
               ],
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
-                    child: Text('🙁', style: TextStyle(fontSize: 30.0)),
+                    child: Text('🙁', style: TextStyle(fontSize: 65.0)),
                     onTap: () {
                       try {
                         getCurrentUser().then((userId) {
@@ -111,10 +117,11 @@ class EmojiAlert extends StatelessWidget {
                     })
               ],
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
-                    child: Text('😢', style: TextStyle(fontSize: 30.0)),
+                    child: Text('😢', style: TextStyle(fontSize: 60.0)),
                     onTap: () {
                       try {
                         getCurrentUser().then((userId) {

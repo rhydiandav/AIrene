@@ -51,7 +51,10 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Update Your Birthday"),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      title: Text("Update Your Birthday",
+          style: TextStyle(fontFamily: 'Bad Script', fontSize: 30),
+          textAlign: TextAlign.center),
       content: Form(
         key: _formKey,
         child: Column(
@@ -67,7 +70,11 @@ class _BirthdaySettingsState extends State<BirthdaySettings> {
                 onSaved: (dt) =>
                     _dateofbirth = dt.toIso8601String().substring(0, 10)),
             RaisedButton(
-                child: Text('Done!'),
+                child: Text(
+                  'Done!',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.teal[200],
                 onPressed: () => {
                       validateAndSubmit(),
                     })
