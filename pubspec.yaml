@@ -34,7 +34,6 @@ dependencies:
   flutter_dialogflow: ^0.1.0
   charts_flutter:
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,12 +69,27 @@ flutter:
         - asset: fonts/Tangerine/Tangerine-Regular.ttf
         - asset: fonts/Tangerine/Tangerine-Bold.ttf
           weight: 700
+
     - family: Marck Script
       fonts:
         - asset: fonts/Marck_Script/MarckScript-Regular.ttf
     - family: Delius
       fonts:
         - asset: fonts/Delius/Delius-Regular.ttf
+
+    - family: Bitter
+      fonts:
+        - asset: fonts/Bitter/Bitter-Regular.ttf
+    - family: Fira Sans
+      fonts:
+        - asset: fonts/Fira_Sans/FiraSans-Regular.ttf
+    - family: Muli
+      fonts:
+        - asset: fonts/Muli/Muli-Regular.ttf
+    - family: NotoSansJP
+      fonts:
+        - asset: fonts/Noto_Sans_JP/NotoSansJP-Regular.otf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

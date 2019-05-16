@@ -5,17 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:project/addToCalendar.dart';
 
-class CalendarPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Calendar'),
-        ),
-        body: CalendarViewApp());
-  }
-}
-
 class CalendarViewApp extends StatefulWidget {
   @override
   _CalendarViewAppState createState() => _CalendarViewAppState();
@@ -70,64 +59,245 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
         });
   }
 
-  @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 5.0,
-          vertical: 10.0,
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Diary'),
         ),
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Calendar(
-              onSelectedRangeChange: (range) =>
-                  print("Range is ${range.item1}, ${range.item2}"),
-              onDateSelected: (date) => {
-                    setState(() {
-                      newDate = date;
-                    }),
-                    handleNewDate(date),
-                  },
-              isExpandable: true,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.1, 0.5, 0.7, 0.9],
+              colors: [
+                Colors.white,
+                Colors.pink[50],
+                Colors.indigo[50],
+                Colors.white,
+              ],
             ),
-            Divider(
-              height: 50.0,
-            ),
-            Container(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Ink(
-                decoration: ShapeDecoration(
-                  color: Colors.pink,
-                  shape: CircleBorder(),
-                ),
-                child: IconButton(
-                  icon: Icon(Icons.add),
-                  color: Colors.white,
-                  onPressed: () {
-                    _showDialog('activity', newDate);
-                  },
+          ),
+          child: ListView(
+            shrinkWrap: false,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(10),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                child: Calendar(
+                  onDateSelected: (date) => {
+                        setState(() {
+                          newDate = date;
+                        }),
+                        handleNewDate(date),
+                      },
+                  isExpandable: true,
                 ),
               ),
-            ),
-            Text('Mood: $mood'),
-            activity == null
-                ? Text('Please add your activity')
-                : Text('Activity: $activity'),
-            (emoji == null)
-                ? Text('Emoji: No Emoji')
-                : (emoji == 5)
-                    ? Text('Emoji: 😃')
-                    : (emoji == 4)
-                        ? Text('Emoji: 🙂')
-                        : (emoji == 3)
-                            ? Text('Emoji: 😐')
-                            : (emoji == 2)
-                                ? Text('Emoji: 🙁')
-                                : (emoji == 1)
-                                    ? Text('Emoji: ☹️')
-                                    : Text('Emoji: No Emoji')
-          ],
+
+
+              Column(
+                children: <Widget>[
+                  Container(
+                    width: 320,
+                    height: 320,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.teal[400],
+                    ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: <Widget>[
+                              Text(
+                                'Mood:',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.blue[50],
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Share'),
+                              ),
+                              Text(' $mood',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.blue[50],
+                                      fontSize: 25,
+                                      fontFamily: 'Bad Script'))
+                            ],
+                          ),
+                          activity == null
+                              ? Text('Please add your activity',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.blue[50],
+                                      fontSize: 25,
+                                      fontFamily: 'Bad Script'))
+                              : Column(children: [
+                                  Text('Activity: ',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.blue[50],
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Share')),
+                                  Text('$activity',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.blue[50],
+                                          fontSize: 25,
+                                          fontFamily: 'Bad Script'))
+                                ]),
+                          (emoji == null)
+                              ? Column(children: [
+                                  Text('Emoji:',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.blue[50],
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Share')),
+                                  Text('No Emoji',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.blue[50],
+                                          fontSize: 25,
+                                          fontFamily: 'Bad Script'))
+                                ])
+                              : (emoji == 5)
+                                  ? Column(children: [
+                                      Text('Emoji:',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.blue[50],
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Share')),
+                                      Text(' 😃',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.blue[50],
+                                            fontSize: 25,
+                                          ))
+                                    ])
+                                  : (emoji == 4)
+                                      ? Column(children: [
+                                          Text('Emoji:',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.blue[50],
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Share')),
+                                          Text('🙂',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.blue[50],
+                                                fontSize: 25,
+                                              ))
+                                        ])
+                                      : (emoji == 3)
+                                          ? Column(children: [
+                                              Text('Emoji:',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.blue[50],
+                                                      fontSize: 30,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'Share')),
+                                              Text('😐',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.blue[50],
+                                                      fontSize: 25))
+                                            ])
+                                          : (emoji == 2)
+                                              ? Column(children: [
+                                                  Text('Emoji:',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.blue[50],
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontFamily: 'Share')),
+                                                  Text('🙁',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.blue[50],
+                                                        fontSize: 25,
+                                                      ))
+                                                ])
+                                              : (emoji == 1)
+                                                  ? Column(children: [
+                                                      Text('Emoji:',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .blue[50],
+                                                              fontSize: 30,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  'Share')),
+                                                      Text('☹️',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            color:
+                                                                Colors.blue[50],
+                                                            fontSize: 25,
+                                                          ))
+                                                    ])
+                                                  : Column(children: [
+                                                      Text('Emoji:',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .blue[50],
+                                                              fontSize: 30,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  'Share')),
+                                                      Text('No Emoji',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .blue[50],
+                                                              fontSize: 25,
+                                                              fontFamily:
+                                                                  'Bad Script'))
+                                                    ])
+                        ]),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.add,
+            color: Colors.blue[50],
+          ),
+          onPressed: () {
+            _showDialog('activity', newDate);
+          },
+          backgroundColor: Colors.teal[200],
+
         ));
   }
 }
