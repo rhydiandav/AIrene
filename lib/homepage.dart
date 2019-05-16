@@ -102,62 +102,64 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // _showAlert();
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Welcome"),
-        ),
-        drawer: SizedBox(
-          width: 200,
-          child: Drawer(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.all(0),
-                    children: <Widget>[
-                      Container(
-                        height: 108,
-                        child: DrawerHeader(
-                            child: Text(_name != null ? _name : 'Profile',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18)),
-                            decoration: BoxDecoration(color: Colors.pink)),
-                      ),
-                      ListTile(
-                          title: Text("Birthday:"),
-                          subtitle: Text(_dob != null ? _dob : ""),
-                          trailing: Column(
-                            children: <Widget>[
-                              Container(
-                                  child: IconButton(
-                                icon: Icon(const IconData(59576,
-                                    fontFamily: 'MaterialIcons')),
-                                onPressed: () {
-                                  _showDialog('Birthday');
-                                },
-                              ))
-                            ],
-                          )),
-                      ListTile(
-                          title: Text("Location:"),
-                          subtitle:
-                              Text(_location != null ? _location : 'Earth'),
-                          trailing: Column(
-                            children: <Widget>[
-                              Container(
-                                  child: IconButton(
-                                icon: Icon(const IconData(59576,
-                                    fontFamily: 'MaterialIcons')),
-                                onPressed: () {
-                                  _showDialog('Location');
-                                },
-                              ))
-                            ],
-                          )),
-                    ],
-                  ),
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        elevation: 5.0,
+      ),
+      drawer: SizedBox(
+        width: 200,
+        child: Drawer(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  children: <Widget>[
+                    Container(
+                      height: 108,
+                      child: DrawerHeader(
+                          child: Text(_name != null ? _name : 'Profile',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
+                          decoration: BoxDecoration(color: Colors.teal[200])),
+                    ),
+                    ListTile(
+                        title: Text("Birthday:"),
+                        subtitle: Text(_dob != null ? _dob : ""),
+                        trailing: Column(
+                          children: <Widget>[
+                            Container(
+                                child: IconButton(
+                              icon: Icon(const IconData(59576,
+                                  fontFamily: 'MaterialIcons')),
+                              onPressed: () {
+                                _showDialog('Birthday');
+                              },
+                            ))
+                          ],
+                        )),
+                    ListTile(
+                        title: Text("Location:"),
+                        subtitle: Text(_location != null ? _location : 'Manchester'),
+                        trailing: Column(
+                          children: <Widget>[
+                            Container(
+                                child: IconButton(
+                              icon: Icon(const IconData(59576,
+                                  fontFamily: 'MaterialIcons')),
+                              onPressed: () {
+                                _showDialog('Location');
+                              },
+                            ))
+                          ],
+                        )),
+                  ],
                 ),
-                RaisedButton(
-                  color: Colors.pink,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  color: Colors.teal[300],
                   textColor: Colors.white,
                   child: Text("Logout"),
                   onPressed: () {
@@ -165,21 +167,23 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pop(context);
                   },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-        body: Container(
-            child: Column(children: [
-          FractionallySizedBox(widthFactor: 1, child: Quote()),
-          Expanded(
+      ),
+      body: Column(children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: GridView.count(
-              crossAxisCount: 3,
+              crossAxisCount: 4,
               childAspectRatio: 1.0,
               padding: const EdgeInsets.all(3.0),
               mainAxisSpacing: 3.0,
               crossAxisSpacing: 3.0,
               children: <Widget>[
+
                 GridTile(
                   child: IconButton(
                     icon: Icon(
@@ -191,8 +195,11 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => CalendarViewApp()),
                       );
                     },
+
                   ),
                 ),
+
+
                 GridTile(
                   child: Icon(const IconData(58902,
                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
@@ -233,14 +240,18 @@ class _HomePageState extends State<HomePage> {
                         }))
               ],
             ),
-          )
-        ])),
-        floatingActionButton: FloatingActionButton(
-            child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Chatbot()));
-            },
-            backgroundColor: Colors.pink));
+          ),
+        ),
+        Quote(),
+        Image.asset("assets/hellocatbot.png")
+      ]),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Chatbot()));
+          },
+          backgroundColor: Colors.teal[200]),
+    );
   }
 }

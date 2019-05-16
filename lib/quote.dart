@@ -25,41 +25,41 @@ class Quote extends StatelessWidget {
     final random = Random();
     final quoteIndex = random.nextInt(3);
     return Container(
-      margin: const EdgeInsets.all(20.0),
-      padding: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: Colors.purple[100],
-          borderRadius: BorderRadius.circular(25.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.pink[200],
-              offset: Offset(0, 0),
-              blurRadius: 10,
-            )
-          ]),
-      height: 150,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(quotes[quoteIndex]['quote'],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: 'Tangerine',
-                    color: Colors.white,
-                    fontSize: 30)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(quotes[quoteIndex]['author'],
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontFamily: 'Bad Script',
-                        color: Colors.white,
-                        fontSize: 15)),
-              ],
-            )
-          ]),
+      // margin: const EdgeInsets.all(20.0),
+      // padding: const EdgeInsets.all(15.0),
+      // decoration: BoxDecoration(
+      //     color: Colors.purple[100],
+      //     borderRadius: BorderRadius.circular(25.0),
+      //     boxShadow: [
+      //       BoxShadow(
+      //         color: Colors.pink[200],
+      //         offset: Offset(0, 0),
+      //         blurRadius: 10,
+      //       )
+      //     ]),
+      // height: 150,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: [
+          Text(quotes[quoteIndex]['quote'],
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  // fontFamily: 'Tangerine',
+                  color: Colors.pink,
+                  fontSize: 30)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Text(quotes[quoteIndex]['author'],
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                      // fontFamily: 'Bad Script',
+                      color: Colors.pink,
+                      fontSize: 15)),
+            ],
+          )
+        ]),
+      ),
     );
   }
 }

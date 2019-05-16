@@ -29,12 +29,12 @@ class _MoodOverTimeState extends State<MoodOverTime> {
   int fontSize = 0;
 
   List colours = [
-    Colors.blue,
-    Colors.red[700],
-    Colors.orange[700],
-    Colors.yellow[700],
-    Colors.lime,
-    Colors.green
+    Colors.pink,
+    Colors.pink,
+    Colors.pink[200],
+    Colors.indigo[200],
+    Colors.blue[400],
+    Colors.blue[200]
   ];
 
   @override
@@ -96,45 +96,68 @@ class _MoodOverTimeState extends State<MoodOverTime> {
               );
               return Scaffold(
                   appBar: AppBar(
-                    title: Text('My Charts'),
+                    title: Text(
+                      'My Mood Over Time',
+                      style: TextStyle(
+                          color: Colors.white, fontFamily: 'Fira Sans'),
+                    ),
                   ),
                   body: Center(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text('My Mood Over Time'),
                           Expanded(child: chartWidget),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               RaisedButton(
+                                color: Colors.teal[200],
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30)),
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData.sublist(0, 7);
                                         fontSize = 10;
                                       })
                                     },
-                                child: Text('7'),
+                                child: Text(
+                                  '7 days',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Fira Sans'),
+                                ),
                               ),
                               RaisedButton(
+                                color: Colors.teal[200],
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30)),
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData.sublist(0, 30);
                                         fontSize = 3;
                                       })
                                     },
-                                child: Text('30'),
+                                child: Text('30 days',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Fira Sans')),
                               ),
                               RaisedButton(
+                                color: Colors.teal[200],
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30)),
                                 onPressed: () => {
                                       setState(() {
                                         listSlice = moodData;
                                         fontSize = 0;
                                       })
                                     },
-                                child: Text('All'),
+                                child: Text('All Time',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Fira Sans')),
                               ),
                             ],
                           ),

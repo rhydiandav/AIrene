@@ -66,7 +66,12 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
+  //  backgroundColor: Colors.transparent,
+        appBar: AppBar(title: Text("AIrene",  style: new TextStyle(
+              fontFamily: "Times New Roman",
+              fontSize: 30.0,
+              color: Colors.white
+            ),)),
       body: Center(
         child: Container(
           child: Padding(
@@ -74,8 +79,10 @@ class _LogInState extends State<LogIn> {
             child: Form(
               key: formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: buildInputs() + buildSubmitButtons(),
+                
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: buildInputs() + buildSubmitButtons(),
+                  
               ),
             ),
           ),
@@ -86,6 +93,7 @@ class _LogInState extends State<LogIn> {
 
   List<Widget> buildInputs() {
     return [
+      Image.asset("assets/welcomecatbot.png"),
       TextFormField(
         decoration: InputDecoration(
           labelText: 'Email',
@@ -107,22 +115,29 @@ class _LogInState extends State<LogIn> {
   List<Widget> buildSubmitButtons() {
     if (_formType == FormType.login) {
       return [
-        RaisedButton(
-          child: Text(
-            "Login",
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          onPressed: validateAndSubmit,
-        ),
+        Padding(
+          
+         padding: EdgeInsets.only(left: 40.0 , right: 40.0, top: 10.0),
+         child: RaisedButton(
+           elevation: 5.0,
+         textColor: Colors.white,
+         color: Colors.teal[200],
+         child: Text(
+          "Login",
+         style: TextStyle(
+            fontSize: 20.0,
+          )),
+         onPressed: validateAndSubmit,
+         shape: new RoundedRectangleBorder(
+         borderRadius: new BorderRadius.circular(30.0))),
+       ),
         FlatButton(
           child: Text(
             "Create an account",
             style: TextStyle(fontSize: 20.0),
           ),
           onPressed: moveToRegister,
-        )
+        ),
       ];
     } else {
       return [
