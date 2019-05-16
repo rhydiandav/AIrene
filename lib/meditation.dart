@@ -58,7 +58,7 @@ class AnimatedCircle extends AnimatedWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                    child: Text('Breath...',
+                    child: Text('Breathe...',
                         style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'Fira Sans',
