@@ -14,21 +14,22 @@ class Resources extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
-        stops: [0.1, 0.5, 0.7, 0.9],
-        colors: [
-          Colors.grey[100],
-          Colors.grey[200],
-          Colors.grey[300],
-          Colors.grey[400],
-        ],
-      )),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.white,
+            Colors.pink[50],
+            Colors.indigo[50],
+            Colors.white,
+          ],
+        ),
+      ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            title: Text('Resources'),
+            title: Text('Resources', style: TextStyle(color: Colors.white)),
           ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),

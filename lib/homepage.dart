@@ -140,10 +140,8 @@ class _HomePageState extends State<HomePage> {
                         )),
                     ListTile(
                         title: Text("Location:"),
-
-
-                        subtitle: Text(_location != null ? _location : 'Manchester'),
-
+                        subtitle:
+                            Text(_location != null ? _location : 'Manchester'),
                         trailing: Column(
                           children: <Widget>[
                             Container(
@@ -157,7 +155,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         )),
                   ],
-
                 ),
               ),
               SizedBox(
@@ -227,7 +224,6 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-
                   ),
                 ),
                 Padding(
@@ -249,7 +245,6 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-
                   ),
                 ),
                 Padding(
@@ -278,7 +273,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Quote(),
-
         Image.asset("assets/hellocatbot.png")
       ]),
       floatingActionButton: Container(
@@ -297,7 +291,6 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.teal[200]),
         ),
       ),
-
     );
   }
 }

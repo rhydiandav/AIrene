@@ -95,7 +95,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
           CardDialogflow(
             response.getListMessage()[0],
           ).title,
-      name: "CatBot",
+      name: "AIrene",
       type: false,
     );
     setState(() {

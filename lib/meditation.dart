@@ -31,7 +31,7 @@ class _MeditationState extends State<Meditation>
     return Scaffold(
         appBar: AppBar(
             title: Text(
-          "Meditation",
+          "Breathe",
           style: TextStyle(color: Colors.white, fontFamily: 'Fira Sans'),
         )),
         body: AnimatedCircle(animation: animation));
@@ -58,15 +58,7 @@ class AnimatedCircle extends AnimatedWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                    child: Text('Breathe...',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Fira Sans',
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 20)),
-                  ),
-                  Container(
+
                     margin: EdgeInsets.symmetric(
                       vertical: 200,
                     ),

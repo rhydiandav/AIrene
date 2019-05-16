@@ -123,7 +123,7 @@ class _LogInState extends State<LogIn> {
                 ),
               ],
             ),
-            Text('your personal stress bot',
+            Text('your personal wellbeing bot',
                 style: TextStyle(fontFamily: 'Bad Script', fontSize: 30)),
           ],
         ),

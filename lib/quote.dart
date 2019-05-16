@@ -17,55 +17,38 @@ class Quote extends StatelessWidget {
       'quote':
           'Life is ten percent what you experience and ninety percent how you respond to it.',
       'author': '- Dorothy M. Neddermeyer'
-    }
-    ,
+    },
     {
-      'quote':
-          'The past has no power over the present moment.',
+      'quote': 'The past has no power over the present moment.',
       'author': '- Eckhart Tolle'
-    }
-     ,
+    },
     {
-      'quote':
-          'I have lived with several Zen masters -- all of them cats.',
+      'quote': 'I have lived with several Zen masters -- all of them cats.',
       'author': '- Eckhart Tolle'
-    }
-    ,
+    },
     {
       'quote':
           "Life is what happens to you while you're busy making other plans.",
       'author': '- John Lennon'
-    }
-    ,
+    },
     {
-      'quote':
-          "Time you enjoy wasting, was not wasted.",
+      'quote': "Time you enjoy wasting, was not wasted.",
       'author': '- John Lennon'
-    }
-
-    ,
+    },
     {
       'quote':
           "Happiness can be found in the darkest of times, if one only remembers to turn on the light.",
       'author': '- Albus Dumbledore'
-    }
-
-    ,
+    },
     {
-      'quote':
-          "In my experience, worrying means you suffer twice.",
+      'quote': "In my experience, worrying means you suffer twice.",
       'author': '- Newt Scamander'
-    }
-
-    ,
+    },
     {
       'quote':
           "Once you replace negative thoughts with positive ones, you’ll start having positive results.",
       'author': '- Willie Nelson'
     }
-
-
-    
   ];
 
   @override
@@ -79,21 +62,13 @@ class Quote extends StatelessWidget {
           Text(quotes[quoteIndex]['quote'],
               textAlign: TextAlign.center,
               style: TextStyle(
-
-                fontFamily: 'Delius',
-                  color: Colors.teal,
-
-                  fontSize: 30)),
+                  fontFamily: 'Delius', color: Colors.teal[800], fontSize: 30)),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(quotes[quoteIndex]['author'],
                   textAlign: TextAlign.right,
-                  style: TextStyle(
-
-                      color: Colors.teal,
-
-                      fontSize: 15)),
+                  style: TextStyle(color: Colors.teal[800], fontSize: 15)),
             ],
           )
         ]),

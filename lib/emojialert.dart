@@ -18,8 +18,11 @@ class EmojiAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
       title: Text("How are you feeling today?",
-          textAlign: TextAlign.center, textScaleFactor: .7),
+          style: TextStyle(fontFamily: 'Bad Script', fontSize: 50),
+          textAlign: TextAlign.center,
+          textScaleFactor: .7),
       content: Container(
         padding: EdgeInsets.all(10.0),
         child: Column(
