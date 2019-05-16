@@ -31,13 +31,11 @@ class _UserDetailsState extends State<UserDetails> {
   void validateAndSubmit() {
     if (validateAndSave()) {
       try {
-        //post name dob gender hobbies to db
         widget.auth.currentUser().then((userId) {
           Firestore.instance.collection('users').document(userId).updateData(
               {"name": _name, "dob": _dateofbirth, "gender": _gender});
         });
       } catch (e) {
-        //error
         print('Error: $e');
       }
     }
