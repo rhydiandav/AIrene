@@ -45,7 +45,7 @@ class Quote extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                   // fontFamily: 'Tangerine',
-                  color: Colors.pink,
+                  color: Colors.teal,
                   fontSize: 30)),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -54,7 +54,7 @@ class Quote extends StatelessWidget {
                   textAlign: TextAlign.right,
                   style: TextStyle(
                       // fontFamily: 'Bad Script',
-                      color: Colors.pink,
+                      color: Colors.teal,
                       fontSize: 15)),
             ],
           )

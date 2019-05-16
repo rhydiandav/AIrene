@@ -120,7 +120,8 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Chat"),
+        title: Text("Chat",
+            style: TextStyle(color: Colors.white, fontFamily: 'Fira Sans')),
       ),
       body: Column(children: <Widget>[
         Flexible(
