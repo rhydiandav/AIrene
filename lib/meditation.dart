@@ -46,20 +46,42 @@ class AnimatedCircle extends AnimatedWidget {
 
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
-    return Center(
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        height: animation.value,
-        width: animation.value,
-        child: Center(
-          child: Container(
-            width: 300.0,
-            height: 300.0,
-            decoration:
-                BoxDecoration(color: Colors.pink, shape: BoxShape.circle),
+    return Column(
+      children: <Widget>[
+        Container(
+          child: Center(
+            child: Container(
+
+//column
+              margin: EdgeInsets.symmetric(vertical: 10),
+              height: animation.value,
+              width: animation.value,
+              child: Center(
+                child: Container(
+                  width: 300.0,
+                  height: 300.0,
+                  decoration: BoxDecoration(
+                      color: Colors.teal[200],
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.teal,
+                          offset: Offset(0, 0),
+                          blurRadius: 200,
+                        )
+                      ]),
+                ),
+              ),
+            ),
           ),
         ),
-      ),
+        Container(
+          child: Text('Breath In....',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+        ),
+      ],
+      //child of column
     );
   }
 }

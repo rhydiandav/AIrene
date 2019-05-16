@@ -15,7 +15,6 @@ class _UserDetailsState extends State<UserDetails> {
   String _name;
   String _dateofbirth;
   String _gender;
-  // List _hobbies;
 
   final _formKey = GlobalKey<FormState>();
 
