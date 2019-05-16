@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chatbot extends StatefulWidget {
@@ -28,7 +27,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
       print('initing state');
       response('User ID ' + userId);
     });
-    getUserDetails().then((name) {
+    getUserName().then((name) {
       setState(() {
         _name = name;
       });
@@ -36,7 +35,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
     super.initState();
   }
 
-  Future getUserDetails() async {
+  Future getUserName() async {
     var currentUser = await getCurrentUser();
     var name = await Firestore.instance
         .collection('users')
