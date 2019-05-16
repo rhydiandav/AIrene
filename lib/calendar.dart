@@ -110,10 +110,10 @@ class _CalendarViewAppState extends State<CalendarViewApp> {
                 ),
               ),
             ),
-            Text('Mood: ${mood}'),
+            Text('Mood: $mood'),
             activity == null
                 ? Text('Please add your activity')
-                : Text('Activity: ${activity}'),
+                : Text('Activity: $activity'),
             (emoji == null)
                 ? Text('Emoji: No Emoji')
                 : (emoji == 5)
