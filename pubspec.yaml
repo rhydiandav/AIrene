@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.2.0 <3.0.0'
+  sdk: '>=2.1.0 <3.0.0'
 
 dependencies:
   intl: ^0.15.8
@@ -26,7 +26,7 @@ dependencies:
 
   flutter:
     sdk: flutter
-   
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -77,18 +77,9 @@ flutter:
       fonts:
         - asset: fonts/Delius/Delius-Regular.ttf
 
-    - family: Bitter
-      fonts:
-        - asset: fonts/Bitter/Bitter-Regular.ttf
     - family: Fira Sans
       fonts:
         - asset: fonts/Fira_Sans/FiraSans-Regular.ttf
-    - family: Muli
-      fonts:
-        - asset: fonts/Muli/Muli-Regular.ttf
-    - family: NotoSansJP
-      fonts:
-        - asset: fonts/Noto_Sans_JP/NotoSansJP-Regular.otf
 
   #
   # For details regarding fonts from package dependencies,

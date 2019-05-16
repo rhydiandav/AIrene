@@ -141,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                     ListTile(
                         title: Text("Location:"),
 
+
                         subtitle: Text(_location != null ? _location : 'Manchester'),
 
                         trailing: Column(
@@ -174,151 +175,128 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-
-       body: Column(children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top:50.00),
-              child: GridView.count(
-                crossAxisCount: 4,
-                childAspectRatio: 1.0,
-                padding: const EdgeInsets.all(3.0),
-                mainAxisSpacing: 3.0,
-                crossAxisSpacing: 3.0,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridTile(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.0)),
-                        elevation: 5.0,
-                        child: IconButton(
-                          icon: Icon(const IconData(59701,
-                              fontFamily: 'MaterialIcons')),
-
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CalendarViewApp()),
-                      );
-                    },
-
-                  ),
-                ),
-
-                    ),
-                    
-                    ),
-  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridTile(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.0)),
-                        elevation: 5.0,
-                        child: IconButton(
-                          icon: Icon(const IconData(59105,
-                              fontFamily: 'MaterialIcons')),
-
-
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MoodOverTime()),
-                      );
-                    },
-                  ),
-                ),
-
-
-                    ),
-                    
-                    ),
-               
-                      Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridTile(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.0)),
-                        elevation: 5.0,
-                        child: IconButton(
-                          icon: Icon(const IconData(57936,
-                              fontFamily: 'MaterialIcons')),
-
-
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Resources()),
-                      );
-                    },
-                  ),
-                ),
-                    ),
-                    
-                    ),
+      ),
+      body: Column(children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.00),
+            child: GridView.count(
+              crossAxisCount: 4,
+              childAspectRatio: 1.0,
+              padding: const EdgeInsets.all(3.0),
+              mainAxisSpacing: 3.0,
+              crossAxisSpacing: 3.0,
+              children: <Widget>[
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridTile(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.0)),
-                        elevation: 5.0,
-                        child: IconButton(
-                          icon: Icon(const IconData(59517,
-                              fontFamily: 'MaterialIcons')),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Meditation()),
-                      );
-                    },
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 5.0,
+                      child: IconButton(
+                        icon: Icon(
+                            const IconData(59701, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CalendarViewApp()),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 5.0,
+                      child: IconButton(
+                        icon: Icon(
+                            const IconData(59105, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MoodOverTime()),
+                          );
+                        },
+                      ),
                     ),
-                    
+
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 5.0,
+                      child: IconButton(
+                        icon: Icon(
+                            const IconData(57936, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Resources()),
+                          );
+                        },
+                      ),
                     ),
-               
+
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 5.0,
+                      child: IconButton(
+                        icon: Icon(
+                            const IconData(59517, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Meditation()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
+        ),
+        Quote(),
 
-),
-               Quote(),
         Image.asset("assets/hellocatbot.png")
       ]),
-        
-
-        floatingActionButton: Container(
-           height: 75.0,
+      floatingActionButton: Container(
+        height: 75.0,
         width: 75.0,
-            child: FittedBox(
-                          child: FloatingActionButton(
-                                                      child: CircleAvatar(
-              radius: 30.00,
-          
-          child: 
-          Image.asset("assets/chatavatar.png"),
-backgroundColor: Colors.teal[200]
+        child: FittedBox(
+          child: FloatingActionButton(
+              child: CircleAvatar(
+                  radius: 30.00,
+                  child: Image.asset("assets/chatavatar.png"),
+                  backgroundColor: Colors.teal[200]),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Chatbot()));
+              },
+              backgroundColor: Colors.teal[200]),
         ),
-         onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Chatbot()));
-            },
-            backgroundColor: Colors.teal[200]),
-                          ),
-            ),
-        );
-      }
-      }
-      
-
-  
-     
-
+      ),
 
     );
   }
