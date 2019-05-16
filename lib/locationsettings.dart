@@ -49,7 +49,10 @@ class _LocationSettingsState extends State<LocationSettings> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Update Your Location"),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      title: Text("Update Your Location",
+          style: TextStyle(fontFamily: 'Bad Script', fontSize: 30),
+          textAlign: TextAlign.center),
       content: Form(
         key: _formKey,
         child: Column(
@@ -63,7 +66,11 @@ class _LocationSettingsState extends State<LocationSettings> {
               onSaved: (value) => _location = value,
             ),
             RaisedButton(
-                child: Text('Done!'),
+                child: Text(
+                  'Done!',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.teal[200],
                 onPressed: () => {
                       validateAndSubmit(),
                     })

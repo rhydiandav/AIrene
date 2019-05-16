@@ -102,63 +102,64 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // _showAlert();
     return Scaffold(
-       backgroundColor: Colors.grey[100],
-        appBar: AppBar(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
         elevation: 5.0,
-        ),
-        drawer: SizedBox(
-          width: 200,
-          child: Drawer(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.all(0),
-                    children: <Widget>[
-                      Container(
-                        height: 108,
-                        child: DrawerHeader(
-                            child: Text(_name != null ? _name : 'Profile',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18)),
-                            decoration: BoxDecoration(color: Colors.teal[200])),
-                      ),
-                      ListTile(
-                          title: Text("Birthday:"),
-                          subtitle: Text(_dob != null ? _dob : ""),
-                          trailing: Column(
-                            children: <Widget>[
-                              Container(
-                                  child: IconButton(
-                                icon: Icon(const IconData(59576,
-                                    fontFamily: 'MaterialIcons')),
-                                onPressed: () {
-                                  _showDialog('Birthday');
-                                },
-                              ))
-                            ],
-                          )),
-                      ListTile(
-                          title: Text("Location:"),
-                          subtitle:
-                              Text(_location != null ? _location : 'Earth'),
-                          trailing: Column(
-                            children: <Widget>[
-                              Container(
-                                  child: IconButton(
-                                icon: Icon(const IconData(59576,
-                                    fontFamily: 'MaterialIcons')),
-                                onPressed: () {
-                                  _showDialog('Location');
-                                },
-                              ))
-                            ],
-                          )),
-                    ],
-                  ),
+      ),
+      drawer: SizedBox(
+        width: 200,
+        child: Drawer(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  children: <Widget>[
+                    Container(
+                      height: 108,
+                      child: DrawerHeader(
+                          child: Text(_name != null ? _name : 'Profile',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
+                          decoration: BoxDecoration(color: Colors.teal[200])),
+                    ),
+                    ListTile(
+                        title: Text("Birthday:"),
+                        subtitle: Text(_dob != null ? _dob : ""),
+                        trailing: Column(
+                          children: <Widget>[
+                            Container(
+                                child: IconButton(
+                              icon: Icon(const IconData(59576,
+                                  fontFamily: 'MaterialIcons')),
+                              onPressed: () {
+                                _showDialog('Birthday');
+                              },
+                            ))
+                          ],
+                        )),
+                    ListTile(
+                        title: Text("Location:"),
+                        subtitle: Text(_location != null ? _location : 'Earth'),
+                        trailing: Column(
+                          children: <Widget>[
+                            Container(
+                                child: IconButton(
+                              icon: Icon(const IconData(59576,
+                                  fontFamily: 'MaterialIcons')),
+                              onPressed: () {
+                                _showDialog('Location');
+                              },
+                            ))
+                          ],
+                        )),
+                  ],
                 ),
-                RaisedButton(
-                  color: Colors.pink,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  color: Colors.teal[300],
                   textColor: Colors.white,
                   child: Text("Logout"),
                   onPressed: () {
@@ -166,42 +167,43 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pop(context);
                   },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-       body: Column(children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.count(
-                crossAxisCount: 4,
-                childAspectRatio: 1.0,
-                padding: const EdgeInsets.all(3.0),
-                mainAxisSpacing: 3.0,
-                crossAxisSpacing: 3.0,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridTile(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.0)),
-                        elevation: 5.0,
-                        child: IconButton(
-                          icon: Icon(const IconData(59701,
-                              fontFamily: 'MaterialIcons')),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CalendarPage()),
-                      );
-                    },
+      ),
+      body: Column(children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.count(
+              crossAxisCount: 4,
+              childAspectRatio: 1.0,
+              padding: const EdgeInsets.all(3.0),
+              mainAxisSpacing: 3.0,
+              crossAxisSpacing: 3.0,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 5.0,
+                      child: IconButton(
+                        icon: Icon(
+                            const IconData(59701, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CalendarPage()),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
-                    ),
-                    
-                    ),
 //                   ),
 //                 GridTile(
 //                   child: Icon(const IconData(58902,
@@ -255,8 +257,6 @@ class _HomePageState extends State<HomePage> {
 //   }
 // }
 
-
-  
                 GridTile(
                   child: Icon(const IconData(58902,
                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
@@ -274,9 +274,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 GridTile(
-                  child:
-                      IconButton(
-                        icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(57936, fontFamily: 'MaterialIcons')),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -298,20 +298,17 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          
-          ),
-           Quote(),
-          Image.asset("assets/hellocatbot.png")]
         ),
-        
-
-        floatingActionButton: FloatingActionButton(
-            child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Chatbot()));
-            },
-            backgroundColor: Colors.teal[200]),
+        Quote(),
+        Image.asset("assets/hellocatbot.png")
+      ]),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Chatbot()));
+          },
+          backgroundColor: Colors.teal[200]),
     );
   }
 }
