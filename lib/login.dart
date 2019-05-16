@@ -70,6 +70,7 @@ class _LogInState extends State<LogIn> {
       appBar: AppBar(title: Text("AIrene",  style: new TextStyle(
               fontFamily: "Times New Roman",
               fontSize: 30.0,
+              color: Colors.white
             ),)),
       body: Center(
         child: Container(
@@ -120,7 +121,7 @@ class _LogInState extends State<LogIn> {
          child: RaisedButton(
            elevation: 5.0,
          textColor: Colors.white,
-         color: Colors.pink[400],
+         color: Colors.teal[200],
          child: Text(
           "Login",
          style: TextStyle(

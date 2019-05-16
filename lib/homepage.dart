@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
-          title: Text("Welcome"),
+          
           elevation: 5.0,
         ),
         drawer: SizedBox(
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                             child: Text(_name != null ? _name : 'Profile',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18)),
-                            decoration: BoxDecoration(color: Colors.pink)),
+                            decoration: BoxDecoration(color: Colors.teal[200])),
                       ),
                       ListTile(
                           title: Text("Birthday:"),
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 RaisedButton(
-                  color: Colors.pink,
+                  color: Colors.teal[200],
                   textColor: Colors.white,
                   child: Text("Logout"),
                   onPressed: () {
@@ -236,6 +236,6 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Chatbot()));
             },
-            backgroundColor: Colors.pink));
+            backgroundColor: Colors.teal[200]));
   }
 }

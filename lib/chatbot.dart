@@ -48,7 +48,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
               child: IconButton(
                 icon: Icon(
                   Icons.send,
-                  color: Colors.pink,
+                  color: Colors.teal[200],
                 ),
                 onPressed: () => _handleSubmitted(_textController.text),
               ),
@@ -141,7 +141,7 @@ class ChatMessage extends StatelessWidget {
         CircleAvatar(
           child: 
           Image.asset("assets/chatavatar.png"),
-backgroundColor: Colors.pink[400]
+backgroundColor: Colors.teal[200]
         ),
       ),
       Expanded(

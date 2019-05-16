@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
             )),
             child: RootPage(auth: Auth())),
         theme: ThemeData(
-            primaryColor: Colors.pink[400],
-            accentColor: Colors.pink[400],
+            primaryColor: Colors.teal[200],
+            accentColor: Colors.teal[300],
             fontFamily: 'Helvetica',
             textTheme: TextTheme(
               headline: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold),
