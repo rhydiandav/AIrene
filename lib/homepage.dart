@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project/meditation.dart';
 import 'auth.dart';
 import 'calendar.dart';
 import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
+import 'chartpage.dart';
+import 'package:intl/intl.dart';
+import 'dart:async';
+import 'emojialert.dart';
 import 'quote.dart';
 import 'resources.dart';
 
@@ -22,20 +27,42 @@ class _HomePageState extends State<HomePage> {
   String _name;
   String _dob;
   String _location;
+  String emojiPresent;
+
+  String emoji;
+
+  var now = DateFormat("yyyy-MM-dd").format(new DateTime.now());
 
   initState() {
     super.initState();
-
     setDetailsState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showAlert();
+    });
   }
 
-  setDetailsState() {
+  void setDetailsState() {
     getUserDetails().then((userDetails) => {
-          setState(() {
-            _name = userDetails["name"];
-            _dob = userDetails["dob"];
-            _location = userDetails["location"];
-          })
+          setState(
+            () {
+              _name = userDetails["name"];
+              _dob = userDetails["dob"];
+              _location = userDetails["location"];
+              emojiPresent = userDetails[
+                      '${DateFormat("yyyy-MM-dd").format(new DateTime.now())}']
+                  .toString();
+            },
+          ),
+        });
+  }
+
+  void _showAlert() {
+    print('');
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return EmojiAlert();
         });
   }
 
@@ -57,7 +84,6 @@ class _HomePageState extends State<HomePage> {
         .then((DocumentSnapshot ds) {
       return (ds.data);
     });
-
     return userDetails;
   }
 
@@ -74,6 +100,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // _showAlert();
     return Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -139,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                     _signOut();
                     Navigator.pop(context);
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -176,6 +203,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GridTile(
@@ -230,6 +258,51 @@ class _HomePageState extends State<HomePage> {
           Image.asset("assets/hellocatbot.png"),
           
         ]),
+=======
+                ),
+                GridTile(
+                  child: Icon(const IconData(58902,
+                      fontFamily: 'MaterialIcons', matchTextDirection: true)),
+                ),
+                GridTile(
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(59105, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MoodOverTime()),
+                      );
+                    },
+                  ),
+                ),
+                GridTile(
+                  child:
+                      IconButton(
+                        icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Resources()),
+                      );
+                    },
+                  ),
+                ),
+                GridTile(
+                    child: IconButton(
+                        icon: Icon(
+                            const IconData(59517, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Meditation()));
+                        }))
+              ],
+            ),
+          )
+        ])),
+>>>>>>> c6d29d9a38dfa33861c654eee42a4dcd341a0111
         floatingActionButton: FloatingActionButton(
             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
             onPressed: () {

@@ -77,7 +77,11 @@ class _RootPageState extends State<RootPage> {
             child: FutureBuilder(
                 future: getDetails(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+<<<<<<< HEAD
                   print('snapshot');      
+=======
+                  print('snapshot');
+>>>>>>> c6d29d9a38dfa33861c654eee42a4dcd341a0111
                   if (snapshot.hasData) {
                     print('has data');
                     if (snapshot.data["name"] != null) {
