@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
        body: Column(children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top:50.00),
               child: GridView.count(
                 crossAxisCount: 4,
                 childAspectRatio: 1.0,
@@ -277,13 +277,26 @@ class _HomePageState extends State<HomePage> {
         ),
         
 
-        floatingActionButton: FloatingActionButton(
-            child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
-            onPressed: () {
+        floatingActionButton: Container(
+           height: 75.0,
+        width: 75.0,
+            child: FittedBox(
+                          child: FloatingActionButton(
+                                                      child: CircleAvatar(
+              radius: 30.00,
+          
+          child: 
+          Image.asset("assets/chatavatar.png"),
+backgroundColor: Colors.teal[200]
+        ),
+         onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Chatbot()));
             },
             backgroundColor: Colors.teal[200]),
+                          ),
+            ),
+      
     );
   }
 }
