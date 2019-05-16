@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/homepage.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -15,7 +16,6 @@ class _UserDetailsState extends State<UserDetails> {
   String _name;
   String _dateofbirth;
   String _gender;
-  // List _hobbies;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -35,6 +35,10 @@ class _UserDetailsState extends State<UserDetails> {
           Firestore.instance.collection('users').document(userId).updateData(
               {"name": _name, "dob": _dateofbirth, "gender": _gender});
         });
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       } catch (e) {
         print('Error: $e');
       }
@@ -44,7 +48,9 @@ class _UserDetailsState extends State<UserDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Details")),
+      appBar: AppBar(
+          title: Text("Details",
+              style: TextStyle(color: Colors.white, fontFamily: 'Fira Sans'))),
       body: Center(
         child: Container(
           child: Padding(
@@ -77,9 +83,7 @@ class _UserDetailsState extends State<UserDetails> {
                   ),
                   RaisedButton(
                       child: Text('Done!'),
-                      onPressed: () => {
-                            validateAndSubmit(),
-                          })
+                      onPressed: () => {validateAndSubmit()})
                 ],
               ),
             ),

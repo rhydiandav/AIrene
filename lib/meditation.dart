@@ -29,7 +29,11 @@ class _MeditationState extends State<Meditation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Meditation")),
+        appBar: AppBar(
+            title: Text(
+          "Meditation",
+          style: TextStyle(color: Colors.white, fontFamily: 'Fira Sans'),
+        )),
         body: AnimatedCircle(animation: animation));
   }
 
@@ -47,18 +51,51 @@ class AnimatedCircle extends AnimatedWidget {
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
     return Center(
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        height: animation.value,
-        width: animation.value,
-        child: Center(
-          child: Container(
-            width: 300.0,
-            height: 300.0,
-            decoration:
-                BoxDecoration(color: Colors.pink, shape: BoxShape.circle),
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Text('Breath...',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Fira Sans',
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 20)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 200,
+                    ),
+                    height: animation.value,
+                    width: animation.value,
+                    child: Center(
+                      child: Center(
+                        child: Container(
+                          width: 300.0,
+                          height: 300.0,
+                          decoration: BoxDecoration(
+                              color: Colors.teal[200],
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.teal,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 200,
+                                )
+                              ]),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

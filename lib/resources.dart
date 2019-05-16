@@ -44,13 +44,12 @@ class Resources extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(11.0),
                           child: Column(
                             children: <Widget>[
-                              Text(
-                                "Emergency:",
-                                style: Theme.of(context).textTheme.title,
-                              ),
+                              Text("Emergency:",
+                                  style: Theme.of(context).textTheme.title,
+                                  textScaleFactor: .7),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
@@ -86,10 +85,11 @@ class Resources extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(11.0),
                           child: Column(children: <Widget>[
                             Text("Mental Health:",
-                                style: Theme.of(context).textTheme.title),
+                                style: Theme.of(context).textTheme.title,
+                                textScaleFactor: .7),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -128,15 +128,14 @@ class Resources extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0)),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(11.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: <Widget>[
-                                  Text(
-                                    "Wellbeing:",
-                                    style: Theme.of(context).textTheme.title,
-                                    textAlign: TextAlign.center,
-                                  ),
+                                  Text("Wellbeing:",
+                                      style: Theme.of(context).textTheme.title,
+                                      textAlign: TextAlign.center,
+                                      textScaleFactor: .7),
                                   FlatButton(
                                     child: Text("NHS: Mindfulness"),
                                     onPressed: () {
