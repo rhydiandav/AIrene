@@ -6,6 +6,7 @@ import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
+import 'chartpage.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'emojialert.dart';
@@ -198,7 +199,19 @@ class _HomePageState extends State<HomePage> {
                 GridTile(
                   child: IconButton(
                     icon: Icon(
-                        const IconData(57936, fontFamily: 'MaterialIcons')),
+                        const IconData(59105, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MoodOverTime()),
+                      );
+                    },
+                  ),
+                ),
+                GridTile(
+                  child:
+                      IconButton(
+                        icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -219,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                         }))
               ],
             ),
-          ),
+          )
         ])),
         floatingActionButton: FloatingActionButton(
             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),

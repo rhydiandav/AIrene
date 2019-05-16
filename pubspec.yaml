@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_calendar: ^0.0.1
   flutter_dialogflow: ^0.1.0
+  charts_flutter:
 
 
 dev_dependencies:
