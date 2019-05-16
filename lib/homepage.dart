@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:project/meditation.dart';
 import 'auth.dart';
 import 'calendar.dart';
 import 'chatbot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'locationsettings.dart';
 import 'birthdaysettings.dart';
-
 import 'chartpage.dart';
-
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'emojialert.dart';
-
 import 'quote.dart';
 import 'resources.dart';
-
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignedOut});
@@ -214,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                 GridTile(
                   child:
                       IconButton(
-                        icon: const IconData(57936, fontFamily: 'MaterialIcons')),
+                        icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -224,9 +221,15 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 GridTile(
-                  child:
-                      Icon(const IconData(59517, fontFamily: 'MaterialIcons')),
-                )
+                    child: IconButton(
+                        icon: Icon(
+                            const IconData(59517, fontFamily: 'MaterialIcons')),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Meditation()));
+                        }))
               ],
             ),
           )
