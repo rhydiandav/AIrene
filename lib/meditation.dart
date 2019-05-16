@@ -47,6 +47,7 @@ class AnimatedLogo extends AnimatedWidget {
 
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
+    Text('Breathe In...');
     return Center(
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
