@@ -51,7 +51,12 @@ class _AddToCalendarState extends State<AddToCalendar> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Add a new activity"),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      title: Text(
+        "Add a new activity",
+        style: TextStyle(fontFamily: 'Bad Script', fontSize: 30),
+        textAlign: TextAlign.center,
+      ),
       content: Form(
         key: _formKey,
         child: Column(
@@ -65,7 +70,11 @@ class _AddToCalendarState extends State<AddToCalendar> {
               onSaved: (value) => _activities = value,
             ),
             RaisedButton(
-                child: Text('Done!'),
+                child: Text(
+                  'Done!',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.teal[200],
                 onPressed: () {
                   validateAndSubmit();
                   Navigator.of(context).pop();

@@ -183,79 +183,22 @@ class _HomePageState extends State<HomePage> {
               mainAxisSpacing: 3.0,
               crossAxisSpacing: 3.0,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridTile(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100.0)),
-                      elevation: 5.0,
-                      child: IconButton(
-                        icon: Icon(
-                            const IconData(59701, fontFamily: 'MaterialIcons')),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CalendarPage()),
-                          );
-                        },
-                      ),
-                    ),
+
+                GridTile(
+                  child: IconButton(
+                    icon: Icon(
+                        const IconData(59701, fontFamily: 'MaterialIcons')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CalendarViewApp()),
+                      );
+                    },
+
                   ),
                 ),
-//                   ),
-//                 GridTile(
-//                   child: Icon(const IconData(58902,
-//                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
-//                 ),
-//                 GridTile(
-//                   child: IconButton(
-//                     icon: Icon(
-//                         const IconData(59105, fontFamily: 'MaterialIcons')),
-//                     onPressed: () {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => MoodOverTime()),
-//                       );
-//                     },
-//                   ),
-//                 ),
-//                 GridTile(
-//                   child:
-//                       IconButton(
-//                         icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
-//                     onPressed: () {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => Resources()),
-//                       );
-//                     },
-//                   ),
-//                 ),
-//                 GridTile(
-//                     child: IconButton(
-//                         icon: Icon(
-//                             const IconData(59517, fontFamily: 'MaterialIcons')),
-//                         onPressed: () {
-//                           Navigator.push(
-//                               context,
-//                               MaterialPageRoute(
-//                                   builder: (context) => Meditation()));
-//                         }))
-//               ],
-//             ),
-//           )
-//         ])),
-//         floatingActionButton: FloatingActionButton(
-//             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
-//             onPressed: () {
-//               Navigator.push(
-//                   context, MaterialPageRoute(builder: (context) => Chatbot()));
-//             },
-//             backgroundColor: Colors.pink));
-//   }
-// }
+
 
                 GridTile(
                   child: Icon(const IconData(58902,
