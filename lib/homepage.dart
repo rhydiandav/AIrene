@@ -102,8 +102,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // _showAlert();
     return Scaffold(
+       backgroundColor: Colors.grey[100],
         appBar: AppBar(
-          title: Text("Welcome"),
+        elevation: 5.0,
         ),
         drawer: SizedBox(
           width: 200,
@@ -120,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                             child: Text(_name != null ? _name : 'Profile',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18)),
-                            decoration: BoxDecoration(color: Colors.pink)),
+                            decoration: BoxDecoration(color: Colors.teal[200])),
                       ),
                       ListTile(
                           title: Text("Birthday:"),
@@ -169,21 +170,27 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: Container(
-            child: Column(children: [
-          FractionallySizedBox(widthFactor: 1, child: Quote()),
+       body: Column(children: [
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 3,
-              childAspectRatio: 1.0,
-              padding: const EdgeInsets.all(3.0),
-              mainAxisSpacing: 3.0,
-              crossAxisSpacing: 3.0,
-              children: <Widget>[
-                GridTile(
-                  child: IconButton(
-                    icon: Icon(
-                        const IconData(59701, fontFamily: 'MaterialIcons')),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.count(
+                crossAxisCount: 4,
+                childAspectRatio: 1.0,
+                padding: const EdgeInsets.all(3.0),
+                mainAxisSpacing: 3.0,
+                crossAxisSpacing: 3.0,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridTile(
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100.0)),
+                        elevation: 5.0,
+                        child: IconButton(
+                          icon: Icon(const IconData(59701,
+                              fontFamily: 'MaterialIcons')),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -192,6 +199,64 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
+                    ),
+                    
+                    ),
+//                   ),
+//                 GridTile(
+//                   child: Icon(const IconData(58902,
+//                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
+//                 ),
+//                 GridTile(
+//                   child: IconButton(
+//                     icon: Icon(
+//                         const IconData(59105, fontFamily: 'MaterialIcons')),
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(builder: (context) => MoodOverTime()),
+//                       );
+//                     },
+//                   ),
+//                 ),
+//                 GridTile(
+//                   child:
+//                       IconButton(
+//                         icon: Icon (const IconData(57936, fontFamily: 'MaterialIcons')),
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(builder: (context) => Resources()),
+//                       );
+//                     },
+//                   ),
+//                 ),
+//                 GridTile(
+//                     child: IconButton(
+//                         icon: Icon(
+//                             const IconData(59517, fontFamily: 'MaterialIcons')),
+//                         onPressed: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => Meditation()));
+//                         }))
+//               ],
+//             ),
+//           )
+//         ])),
+//         floatingActionButton: FloatingActionButton(
+//             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
+//             onPressed: () {
+//               Navigator.push(
+//                   context, MaterialPageRoute(builder: (context) => Chatbot()));
+//             },
+//             backgroundColor: Colors.pink));
+//   }
+// }
+
+
+  
                 GridTile(
                   child: Icon(const IconData(58902,
                       fontFamily: 'MaterialIcons', matchTextDirection: true)),
@@ -232,14 +297,21 @@ class _HomePageState extends State<HomePage> {
                         }))
               ],
             ),
-          )
-        ])),
+          ),
+          
+          ),
+           Quote(),
+          Image.asset("assets/hellocatbot.png")]
+        ),
+        
+
         floatingActionButton: FloatingActionButton(
             child: Icon(const IconData(57527, fontFamily: 'MaterialIcons')),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Chatbot()));
             },
-            backgroundColor: Colors.pink));
+            backgroundColor: Colors.teal[200]),
+    );
   }
 }

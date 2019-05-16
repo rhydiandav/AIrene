@@ -75,4 +75,4 @@ flutter:
   # see https://flutter.io/custom-fonts/#from-packages
 
   assets:
-    - assets/chatbot.json
+    - assets/
