@@ -77,7 +77,7 @@ class _UserDetailsState extends State<UserDetails> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'date_ of birth',
+                      labelText: 'date of birth',
                     ),
                     onSaved: (value) => _dateofbirth = value,
                   ),
