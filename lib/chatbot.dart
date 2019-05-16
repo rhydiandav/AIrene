@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chatbot extends StatefulWidget {
   Chatbot({Key key, this.title}) : super(key: key);
@@ -14,6 +15,7 @@ class Chatbot extends StatefulWidget {
 class _HomePageDialogflowV2 extends State<Chatbot> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+  String _name;
 
   Future<String> getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -25,7 +27,24 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
       print('initing state');
       response('User ID ' + userId);
     });
+    getUserName().then((name) {
+      setState(() {
+        _name = name;
+      });
+    });
     super.initState();
+  }
+
+  Future getUserName() async {
+    var currentUser = await getCurrentUser();
+    var name = await Firestore.instance
+        .collection('users')
+        .document(currentUser)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return (ds.data["name"]);
+    });
+    return name;
   }
 
   Widget _buildTextComposer() {
@@ -88,7 +107,7 @@ class _HomePageDialogflowV2 extends State<Chatbot> {
     _textController.clear();
     ChatMessage message = ChatMessage(
       text: text,
-      name: "Me",
+      name: _name,
       type: true,
     );
     setState(() {
@@ -137,11 +156,8 @@ class ChatMessage extends StatelessWidget {
       Container(
         margin: const EdgeInsets.only(right: 16.0),
         child: CircleAvatar(
-          
-          child: 
-          Image.asset("assets/chatavatar.png"),
-backgroundColor: Colors.teal[200]
-        ),
+            child: Image.asset("assets/chatavatar.png"),
+            backgroundColor: Colors.teal[200]),
       ),
       Expanded(
         child: Column(
@@ -153,7 +169,9 @@ backgroundColor: Colors.teal[200]
             ),
             Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: Text(text),
+              child: Text(
+                text,
+              ),
             ),
           ],
         ),
@@ -167,7 +185,7 @@ backgroundColor: Colors.teal[200]
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Text(this.name, style: Theme.of(context).textTheme.subhead),
+            Text(this.name, style: TextStyle(fontWeight: FontWeight.bold)),
             Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: Text(text),
