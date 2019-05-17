@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // _showAlert();
+    MediaQueryData queryData = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
