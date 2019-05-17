@@ -67,16 +67,19 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(),
+
       body: Center(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Form(
               key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: buildInputs() + buildSubmitButtons(),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: buildInputs() + buildSubmitButtons(),
+                ),
               ),
             ),
           ),
@@ -89,13 +92,6 @@ class _LogInState extends State<LogIn> {
     return [
       Image.asset("assets/welcomecatbot.png", height: 180),
       Container(
-        // constraints: BoxConstraints.expand(height: 280),
-        // decoration: BoxDecoration(
-        //   // shape: BoxShape.circle,
-        //   // color: Colors.teal[200],
-        //   image: DecorationImage(
-        //       image: AssetImage("assets/welcomecatbot.png"), fit: BoxFit.cover),
-        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
