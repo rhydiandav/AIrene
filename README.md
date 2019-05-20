@@ -1,16 +1,24 @@
-# project
+# AIRene
 
-A new Flutter project.
+Front end to our final northcoders project, AIrene.
 
-## Getting Started
+Please see [AIrene-be](https://github.com/rhydiandav/AIrene-be) for further information on the back-end of the project.
 
-This project is a starting point for a Flutter application.
+## About
 
-A few resources to get you started if this is your first Flutter project:
+AIrene is a mobile app for iOS and Android devices, written in Dart using Google's [Flutter](https://flutter.dev/) framework.
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+The app is designed to promote mental well being, utilising a chatbot to interact with users in a friendly, conversational manner.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Users can log moods, activities and achievements in their day using the chatbot, which responds appropriately according to mood. Further features include a diary and reports on moods for each day recorded, allowing users to identify trends. The app also features a breathing exercise, and a page for further wellbeing resources.
+
+## Screenshots
+
+![Login Screen](./assets/screenshots/screenshot-01.png)
+![Emoji Selector](./assets/screenshots/screenshot-02.png)
+![Homepage](./assets/screenshots/screenshot-03.png)
+![Chat - Positive Mood](./assets/screenshots/screenshot-04.png)
+![Chat - Negative Mood](./assets/screenshots/screenshot-05.png)
+![Diary](./assets/screenshots/screenshot-06.png)
+![Reports](./assets/screenshots/screenshot-07.png)
+![Breathing Exercise](./assets/screenshots/screenshot-08.png)
